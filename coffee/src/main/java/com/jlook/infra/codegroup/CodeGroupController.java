@@ -93,4 +93,46 @@ public class CodeGroupController {
 		service.delete(dto);
 		return "redirect:/codeGroupXdmList";
 	}
+	
+	@RequestMapping(value = "/Form")
+	public String form() throws Exception {
+		
+		return "xdm/infra/Form";
+		
+	}
+	
+	@RequestMapping(value = "/Login")
+	public String login() throws Exception {
+		
+		
+		return "xdm/infra/Login";
+		
+	}
+	
+	@RequestMapping(value = "/productTableList")
+	public String productList(Model model) throws Exception {
+		
+		model.addAttribute("list", service.selectList());
+
+		System.out.println(toString());
+		return "xdm/infra/productTableList";
+		
+	}
+	
+	@RequestMapping(value = "/ProductListUelete")
+	public String ProductListUelete(CodeGroupDto dto) throws Exception {
+		
+		//System.out.println("dto.getName() : " + dto.getName());
+		System.out.println(dto.toString());
+		service.uelete(dto);
+		return "redirect:/ProductList";
+	}
+	
+	@RequestMapping(value = "/modals")
+	public String modals() throws Exception {
+		
+		return "xdm/infra/modals";
+		
+	}
+	
 }

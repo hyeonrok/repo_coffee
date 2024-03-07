@@ -24,8 +24,9 @@
          select
         a.delNY
      	,a.seq
-		, a.name
+		,a.name
 		,a.modDatetime
+		,a.regDatetime
 		, (select count(*) from code aa where aa.codeGroup_seq=a.seq) as xseqCount
 		
 		from codeGroup a
@@ -69,6 +70,7 @@
 		delNy=1
     		where 1=1
     		and seq=#{seq}
+    		
 		
 	</update>
 	
