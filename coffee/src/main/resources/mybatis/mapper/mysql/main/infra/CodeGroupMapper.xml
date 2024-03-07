@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jlook.infra.codegroup.CodeGroupDao">
+
+	<resultMap id="resultMapObj" type="com.jlook.infra.codegroup.CodeGroupDto"></resultMap>
+
+    <select id="selectList" resultMap="resultMapObj">
+		<!--
+        SELECT
+            a.seq
+            ,a.name
+            ,a.memo
+            ,(select count(aa.seq) from code aa where 1=1 and aa.delNy = 0 and aa.seq = a.seq) as xseqCount
+            ,a.delNy
+            ,a.regDatetime
+            ,a.modDatetime
+         FROM codeGroup a
+        WHERE 1=1
+        	
+        ORDER BY a.seq DESC
+        -->
+        
+         select
+        a.delNY
+     	,a.seq
+		, a.name
+		,a.modDatetime
+		, (select count(*) from code aa where aa.codeGroup_seq=a.seq) as xseqCount
+		
+		from codeGroup a
+
+    </select>
+    
+    <select id="selectOne" resultMap="resultMapObj">
+		select
+			seq
+			,name
+			,memo
+			,delNy
+			,regDatetime
+			,modDatetime
+		from codeGroup 
+		where 1=1
+			AND seq = #{seq}
+	</select>
+	
+	<insert id="insert">
+		insert into codeGroup (
+		name
+		,memo
+		) values (
+		#{name}
+		,#{memo}
+		)
+	</insert>
+	
+	<update id="update">
+		update codeGroup
+		set
+		name=#{name}
+    		where 1=1
+    		and seq=#{seq}
+	</update>
+	
+	<update id="uelete">
+		update codeGroup
+		set
+		delNy=1
+    		where 1=1
+    		and seq=#{seq}
+		
+	</update>
+	
+	<delete id="delete">
+		delete from codeGroup
+		where 1=1
+			and seq=#{seq}
+	</delete>
+	
+</mapper>

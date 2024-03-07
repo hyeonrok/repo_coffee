@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>codeGroupXdmList</title>
+</head>
+<body>
+<a th:href="@{/CodeGroupReg}" th:text="등록"></a>
+    <table>
+    	<tr>
+    		<td>ch</td>
+    		<td>#</td>
+    		<td>del</td>
+    		<td>seq</td>
+    		<td>name</td>
+    		<td>count</td>
+    		<td>modDate</td>
+    	</tr>
+    	<tr th:if="${#lists.isEmpty(list)}">
+    	    <td colspan="7">N/A</td>
+    	</tr>
+    	<tr th:if="${!#lists.isEmpty(list)}" th:each="list:${list}">
+    	    <td></td>
+    		<td></td>
+    		<td th:if="${list.delNy eq 0}">N</td>
+    		<td th:unless="${list.delNy eq 0}">Y</td>
+    		
+    		<td th:text="${list.seq}"></td>
+       		<td th:text="${list.name}"></td>
+       		<td th:text="${list.xseqCount}"></td>
+       		<td><a th:href="@{/codeGroupView(seq=${list.seq}, name=${list.name}, delNy=${list.delNy})}" th:text="${list.name}"></a></td>
+       		
+     		<td th:text="${#dates.format(list.modDatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+    	</tr>
+    </table>
+    
+</body>
+</html>
