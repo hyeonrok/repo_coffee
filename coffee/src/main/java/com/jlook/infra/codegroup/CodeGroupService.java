@@ -5,15 +5,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import templates.xdm.infra.CodeGroupVo;
+
 @Service
 public class CodeGroupService {
 
 	@Autowired
 	CodeGroupDao dao;
 	
-	public List<CodeGroupDto> selectList(){
+	public List<CodeGroupDto> select() {
 		return dao.selectList();
-		}
+	}
+	
+	 public List<CodeGroupDto> selectList(CodeGroupVo vo) { 
+	    	return dao.selectList(vo); 
+	    }
 	
 	public CodeGroupDto selectOne(CodeGroupDto dto) {
 		return dao.selectOne(dto);

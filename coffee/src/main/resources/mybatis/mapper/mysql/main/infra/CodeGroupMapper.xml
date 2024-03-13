@@ -5,33 +5,35 @@
 
 	<resultMap id="resultMapObj" type="com.jlook.infra.codegroup.CodeGroupDto"></resultMap>
 
-    <select id="selectList" resultMap="resultMapObj">
-		<!--
-        SELECT
-            a.seq
-            ,a.name
-            ,a.memo
-            ,(select count(aa.seq) from code aa where 1=1 and aa.delNy = 0 and aa.seq = a.seq) as xseqCount
-            ,a.delNy
-            ,a.regDatetime
-            ,a.modDatetime
-         FROM codeGroup a
-        WHERE 1=1
-        	
-        ORDER BY a.seq DESC
-        -->
-        
-         select
+   <select id="selectList" resultMap="resultMapObj">
+        select
         a.delNY
      	,a.seq
-		,a.name
+		, a.name
 		,a.modDatetime
-		,a.regDatetime
+		, a.regDatetime
 		, (select count(*) from code aa where aa.codeGroup_seq=a.seq) as xseqCount
 		
+		
 		from codeGroup a
-
+	   WHERE 1=1
+	  
+	        <if test="shDelNy != null and shDelNy.equals('')">AND a.delNy = #{shDelNy}</if>
+	     
+	     <!--
+			<choose>
+				<when test="shOptionDate == 1">AND a.regDatetime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2">AND a.modDatetime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			</choose>
+	-->
+	    	 <choose>
+	         	 <when test="shOption == 1">AND a.seq = #{shValue}</when>
+	            <when test="shOption == 2">AND a.name LIKE CONCAT('%',#{shValue},'%')</when>
+	       	 </choose>
     </select>
+
+
+
     
     <select id="selectOne" resultMap="resultMapObj">
 		select
@@ -50,16 +52,19 @@
 		insert into codeGroup (
 		name
 		,memo
+		,delNy
 		) values (
 		#{name}
 		,#{memo}
+		,#{delNy}
 		)
 	</insert>
 	
 	<update id="update">
 		update codeGroup
 		set
-		name=#{name}
+		name=#{name} 
+		, memo=#{memo}
     		where 1=1
     		and seq=#{seq}
 	</update>
@@ -67,7 +72,7 @@
 	<update id="uelete">
 		update codeGroup
 		set
-		delNy=1
+		delNy=0
     		where 1=1
     		and seq=#{seq}
     		

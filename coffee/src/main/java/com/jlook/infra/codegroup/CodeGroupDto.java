@@ -5,6 +5,8 @@ import java.util.Date;
 public class CodeGroupDto {
 
 	private String seq;
+	
+	
 	private String name;
 	private String memo;
 	private Integer delNy;

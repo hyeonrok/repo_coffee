@@ -47,9 +47,10 @@
 
 	<!-- Datetime picker JS -->
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <link rel="stylesheet" type="text/css" media="screen"href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
-
+	<!-- <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" media="screen"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">-->
 
 </head>
 
@@ -526,71 +527,89 @@
 
 				<!-- Row start -->
 				<!-- 폼 셀렉트 -->
-			<form name="formList" id="formList" method="post" autocomplete="off">
 				<div class="row">
 
 					<div class="card">
 						<div class="card-header row">
 
 							<div class="col mb-3">
-								<div class="card-title">Order History</div>
+								<div class="card-title">코드 관리</div>
 							</div>
 
 
-							<!-- search s -->
-									
-										<div class="row col-12 gy-3 mb-3">
-											<div class="col-3">
-												<label class="form-label d-flex">삭제여부</label>
-												<select id="shDelNy" name="shDelNy" class="form-select form-select-sm">
-													<option value="" th:selected="${vo.shDelNy == null}">삭제여부</option>
-													<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
-													<option value="0" th:selected="${vo.shDelNy == 0}">N</option>            
-												</select>
+							<div class="row col-12">
+								<div class="col-3">
+									<label class="form-label d-flex">카테고리</label>
+									<select class="form-select">
+										<option>니트</option>
+										<option>셔츠</option>
+										<option>상의</option>
+										<option>하의</option>
+										<option>아우터</option>
+										<option>신발</option>
+										<option>액세서리</option>
+									</select>
+								</div>
+
+								<div class="col-3">
+									<label class="form-label d-flex">성별</label>
+									<select class="form-select">
+										<option>남</option>
+										<option>여</option>
+										<option>남/여 공용</option>
+									</select>
+								</div>
+
+								<div class="col-3">
+									<label class="form-label d-flex">사용 계절</label>
+									<select class="form-select">
+										<option>봄</option>
+										<option>여름</option>
+										<option>가을</option>
+										<option>겨울</option>
+										<option>사계절</option>
+									</select>
+								</div>
+
+								<div class="col-3">
+									<label class="form-label d-flex">안감</label>
+									<select class="form-select">
+										<option>기모</option>
+										<option>쭈리</option>
+										<option>기본</option>
+										<option>면</option>
+									</select>
+								</div>
+							</div>
+
+							<!--<div class="row mb-4">
+											<div class="col-3 gy-2">
+												<label class="form-label d-flex">등록일</label>
+												<div class="datetimepicker">
+													<input type="text" id="shDateStart" name="shDateStart" placeholder="시작일" 
+													class="form-control form-control-sm " autocomplete="off" readonly class="bi bi-calendar4">
+												</div>
 											</div>
-											
-											<div class="col-3">
-												<label class="form-label d-flex">등록일/수정일</label>
-												<select id="shOptionDate" name="shOptionDate" class="form-select form-select-sm">
-													<option value="" th:selected="${vo.shOptionDate == null}">날짜</option>
-													<option value="1" th:selected="${vo.shOptionDate == 1}">등록일</option>
-													<option value="2" th:selected="${vo.shOptionDate == 2}">수정일</option>
-												</select>
+											<div class="col-3 gy-2">
+												<label class="form-label d-flex">수정일</label>
+												<div class="datetimepicker">
+													<input type="text" id="shDateStart" name="shDateStart" placeholder="종료일" 
+													class="form-control form-control-sm" autocomplete="off" readonly>
+												</div>
 											</div>
-											
-											<div class="col-3">
-												<label class="form-label d-flex">시작일</label>
-													<input type="text" id="shDateStart" name="shDateStart" th:value="${#strings.substring(vo.shDateStart, 0, 10)}" placeholder="시작일" 
-													class="form-control form-control-sm" autocomplete="off">
+											<div class="col-3 gy-2">
+												<label class="form-label d-flex"><br></label>
+												<div class="input-group">
+													<input type="text" class="form-control" placeholder="검색어..">
+													<button class="btn" type="button">
+														<i class="bi bi-search"></i>
+													</button>
+												</div>
 											</div>
-											
-											<div class="col-3">
-												<label class="form-label d-flex">종료일</label>
-													<input type="text" id="shDateEnd" name="shDateEnd" th:value="${#strings.substring(vo.shDateEnd, 0, 10)}" placeholder="종료일" 
-													class="form-control form-control-sm" autocomplete="off">
-											</div>
-											<div class="col-3">
-												<select id="shOption" name="shOption" class="form-select form-select-sm">
-													<option value="" th:selected="${vo.shOption == null}">검색구분</option>
-													<option value="1" th:selected="${vo.shOption == 1}">코드그룹 코드</option>
-													<option value="2" th:selected="${vo.shOption == 2}">코드그룹 이름</option>
-													<option value="3" th:selected="${vo.shOption == 3}">코드그룹 이름 (영문)</option>
-												</select>
-											</div>  
-											<div class="col-3">
-												<input type="text" id="shValue" name="shValue" th:value="${vo.shValue}" onkeyup="enterkey()" placeholder="검색어" class="form-control form-control-sm">
-												<div class="invalid-feedback" id="shValueFeedback"></div>
-											</div>
-											<div class="col">
-												<button type="button" id="btnSearch" class="btn btn-outline-secondary btn-sm btn_custom"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
-												<button type="button" id="btnReset" class="btn btn-outline-secondary btn-sm btn_custom"><i class="fa-solid fa-rotate-right fa-lg"></i></button>
-											</div>                     
-										</div>
-<!-- search e -->
+										</div>-->
 						</div>
 					</div>
 				</div>
-			</form>
 				<!-- Row end -->
 				<!-- 테이블 시작-->
 				<!-- 테이블 컨테이너 시작-->
@@ -644,11 +663,11 @@
 									<td th:text="${list.seq}"></td>
 									<td th:if="${list.delNy eq 0}">N</td>
 									<td th:unless="${list.delNy eq 0}">Y</td>
-									<td><a th:href="@{/Form3(name=${list.name}, memo=${list.memo}, seq=${list.seq})}"
+									<td><a th:href="@{/CodeView(name=${list.name}, memo=${list.memo}, seq=${list.seq})}"
 											th:text="${list.name}"></a></td>
 									<td th:text="${list.memo}"></td>
 									<!-- 등록일 수정일 -->
-									<td th:text="${#dates.format(list.regDatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+									<td th:text="${#dates.format(list.reqDatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>
 									<td th:text="${#dates.format(list.modDatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>
 
 								</tr>
@@ -703,7 +722,7 @@
 								</button>
 							</div>
 							<div class="col-1 mt-2 mb-2 float-right">
-								<a th:href="@{/Form2}"><button type="submit" class="btn btn-info"  data-bs-toggle="modal"
+								<a th:href="@{/CodeForm}"><button type="submit" class="btn btn-info" data-bs-toggle="modal"
 										data-bs-target="#verticallyCentered-mod">
 										+
 									</button></a>
@@ -751,7 +770,6 @@
 			</div>
 		</div>
 	</div>
-	
 
 
 	<!-- *************
@@ -778,64 +796,20 @@
 	<!-- Main Js Required -->
 	<script src="/xdm/assets/js/main.js"></script>
 
+	<script src="/xdm/v1/jquery/datetimepicker/jquery.datetimepicker.full.min.js"></script>
 
-	 
-	
-
-<!-- go스크립트 -->
-<<!-- 강사님 데이터 피커 -->
-	<!--데이터피커 자바스크립트 구문-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+	<!-- Date picker Js -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
         <script type="text/javascript">
             $(function () {
                 $("#shDateStart, #shDateEnd").datetimepicker({
                     format: "Y-m-d",
-                    timepicker:false,
+					timepicker:false,
                 });
             });
-   
-	
-	let goUrlXdmList = "/productTableList";								/* ### */
-	let goUrlXdmForm = "/Form2";								/* ### */
-	let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele";			/* ### */
-	let goUrlXdmMultiDele = "/v1/infra/codegroup/codeGroupXdmMultiDele";			/* ### */
-	let goUrlXdmView = "/Form3";								/* ### */
-	
-	let seq = document.querySelector("input[name=ifcgSeq]");									/* ### */
-	
-	let form = document.querySelector("form[name=formList]");
+        </script>-->
 
-	document.getElementById("btnReset").onclick = function () {
-	    location.href = goUrlXdmList;
-	}
-	
-	
-	/*
-	document.getElementById("btnForm").onclick = function () {
-	    goForm(0);
-	}
-	*/
-	
-	goForm = function (keyValue) {
-	    seq.value = keyValue;
-	    form.action = goUrlXdmForm;
-	    form.submit();
-	}
-	
-	document.getElementById("btnSearch").onclick = function () {
-    form.action = goUrlXdmList;
-    form.submit();
-	};
 
-	function enterkey() {
-		if (window.event.keyCode == 13) {
-		    form.action = goUrlXdmList;
-		    form.submit();
-	    }
-	}
-	
-	
-</script>
 
 </body>
 
