@@ -626,7 +626,6 @@
 												<td>#</td>
 												<th>삭제여부</th>
 												<th>이름</th>
-												<th>메모</th>
 												<th>등록일</th>
 												<th>수정일</th>
 											</tr>
@@ -643,9 +642,8 @@
 									<td th:text="${list.seq}"></td>
 									<td th:if="${list.delNy eq 0}">N</td>
 									<td th:unless="${list.delNy eq 0}">Y</td>
-									<td><a th:href="@{/CodeGroupFrom(seq=${list.seq}, name=${list.name}, memo=${list.memo})}"
-											th:text="${list.name}"></a></td>				<!--질문-->
-									<td th:text="${list.memo}"></td>
+									<td><a th:href="@{/CodeGroupForm(seq=${list.seq})}"
+											th:text="${list.name}"></a></td>				
 									<!-- 등록일 수정일 -->
 									<td th:text="${#dates.format(list.regDatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>
 									<td th:text="${#dates.format(list.modDatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>
@@ -782,7 +780,7 @@
 	
 
 <!-- go스크립트 -->
-<<!-- 강사님 데이터 피커 -->
+<!-- 강사님 데이터 피커 -->
 	<!--데이터피커 자바스크립트 구문-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
         <script type="text/javascript">
@@ -798,7 +796,7 @@
 	let goUrlXdmForm = "/CodeGroupReg";								/* ### */
 	let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele";			/* ### */
 	let goUrlXdmMultiDele = "/v1/infra/codegroup/codeGroupXdmMultiDele";			/* ### */
-	let goUrlXdmView = "/CodeGroupFrom";								/* ### */
+	let goUrlXdmView = "/CodeGroupForm";								/* ### */
 	
 	let seq = document.querySelector("input[name=ifcgSeq]");									/* ### */
 	

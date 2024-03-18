@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.jlook.common.constants.Constants;
 import com.jlook.common.util.UtilDateTime;
 
-import templates.xdm.infra.CodeGroupVo;
-
 @Controller
 public class CodeGroupController {
 
@@ -34,12 +32,12 @@ public class CodeGroupController {
 		
 	}
 	
-	@RequestMapping(value = "/CodeGroupFrom")
+	@RequestMapping(value = "/CodeGroupForm")
 	public String codeGroupFrom(CodeGroupDto dto, Model model) throws Exception {
 		
 		System.out.println(dto.toString()+"===============================");
 		model.addAttribute("item", service.selectOne(dto));
-		return "xdm/infra/CodeGroupFrom";
+		return "xdm/infra/CodeGroupForm";
 	}
 	
 	

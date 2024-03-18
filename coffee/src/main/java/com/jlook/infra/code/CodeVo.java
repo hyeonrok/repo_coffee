@@ -1,4 +1,4 @@
-package templates.xdm.infra;
+package com.jlook.infra.code;
 
 public class CodeVo {
 

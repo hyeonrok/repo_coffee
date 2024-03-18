@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jlook.infra.codegroup.CodeGroupVo;
+
 @Service
 public class CodeService {
 
@@ -13,6 +15,10 @@ public class CodeService {
 	
 	public List<CodeDto> selectList(){
 		return dao.selectList();
+		}
+	
+	public List<CodeDto> selectList(CodeVo vo){
+		return dao.selectList(vo);
 		}
 	
 	public CodeDto selectOne(CodeDto dto) {

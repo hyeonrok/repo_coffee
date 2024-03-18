@@ -14,7 +14,8 @@
              ,b.seq
              ,b.name
              ,b.modDatetime
-         	 ,b.reqDatetime
+         	 ,b.regDatetime
+         	 ,b.codeGroup_seq
          from 
              codeGroup a
              
@@ -22,6 +23,20 @@
          
          on  a.seq=b.codeGroup_seq
 
+	   WHERE 1=1
+	  
+	        <if test="shDelNy != null and shDelNy.equals('')">AND a.delNy = #{shDelNy}</if>
+	     
+	     <!--
+			<choose>
+				<when test="shOptionDate == 1">AND a.regDatetime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2">AND a.modDatetime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			</choose>
+	-->
+	    	 <choose>
+	         	 <when test="shOption == 1">AND a.seq = #{shValue}</when>
+	            <when test="shOption == 2">AND a.name LIKE CONCAT('%',#{shValue},'%')</when>
+	       	 </choose>
 			
 	</select>
 	
@@ -31,7 +46,7 @@
 			,name
 			,memo
 			,delNy
-			,reqDatetime
+			,regDatetime
 			,modDatetime
 		from code 
 		where 1 = 1
@@ -42,11 +57,17 @@
 		insert into code (
 		name
 		,memo
-		,codegroup_seq
+		,delNy
+		,regDatetime
+		,modDatetime
+		,codeGroup_seq
 		) values (
 		#{name}
 		,#{memo}
-		,#{codegroup_seq}
+		,0
+		,now()
+		,now()
+		,#{codeGroup_seq}
 		)
 	</insert>
 	
@@ -54,6 +75,10 @@
 		update code
 		set
 		name = #{name}
+		,memo=#{memo}
+		,modDatetime=now()
+		,delNy=0
+		,codeGroup_seq = #{codeGroup_seq}
     		where 1=1
     		and seq = #{seq}
 	</update>

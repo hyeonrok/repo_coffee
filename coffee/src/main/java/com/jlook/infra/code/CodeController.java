@@ -3,6 +3,7 @@ package com.jlook.infra.code;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -12,25 +13,27 @@ public class CodeController {
 	CodeService service;
 	
 	@RequestMapping(value = "/CodeXdmList")				
-	public String codeXdmList(Model model) throws Exception{		
-	
-		model.addAttribute("list", service.selectList());
-	System.out.println(model.toString());
+	public String codeXdmList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception{
+		model.addAttribute("list", service.selectList(vo));
+	System.out.println(vo.toString());
 		
 		return "xdm/infra/CodeXdmList";
 	}
 	
 	@RequestMapping(value = "/CodeForm")
-	public String form() throws Exception {
+	public String codeForm(CodeDto dto, Model model) throws Exception {
 		
+		System.out.println(dto.toString()+"===============================");
+		model.addAttribute("item", service.selectOne(dto));
 		return "xdm/infra/CodeForm";
 		
 	}
-	@RequestMapping(value = "/CodeView")
-	public String CodeView(CodeDto dto, Model model) throws Exception{
+	
+	@RequestMapping(value = "/CodeReg")
+	public String codeReg() throws Exception {
 		
-		model.addAttribute("item", service.selectOne(dto));
-		return "xdm/infra/CodeView";
+		return "xdm/infra/CodeReg";
+		
 	}
 	
 	@RequestMapping(value = "/CodeInsert")
