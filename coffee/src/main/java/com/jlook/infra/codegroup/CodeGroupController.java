@@ -18,42 +18,30 @@ public class CodeGroupController {
 	CodeGroupService service;
 //	CodeGroupService codeGroupService;
 
-	@RequestMapping(value = "/productTableList")
+	@RequestMapping(value = "/CodeGroupXdmList")
 	public String codeGroupXdmList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception{
 			model.addAttribute("list", service.selectList(vo));
 //			model.addAttribute("vo", vo);
 
 			System.out.println(vo.toString()+"==================================");
-        return "xdm/infra/productTableList";
+        return "xdm/infra/CodeGroupXdmList";
   	}
 	
-	
-	@RequestMapping(value = "/CodeGroupView")
-	public String codeGroupView(CodeGroupDto dto, Model model) throws Exception {
-		
-		System.out.println("dto.getseq() : " + dto.getSeq());
-		System.out.println("dto.getName() : " + dto.getName());
-		System.out.println("dto.geModDatetime() : " + dto.getModDatetime());
-		model.addAttribute("item", service.selectOne(dto));
-		return "xdm/infra/CodeGroupView";
-	}
-	
-	@RequestMapping(value = "/CodeGroupForm")
-	public String CodeGroupForm(CodeGroupDto dto, Model model) throws Exception {
-		
-		System.out.println(dto.toString());
-		model.addAttribute("item", service.selectOne(dto));
-
-		return "CodeGroupForm";
-	}
-	
 	@RequestMapping(value = "/CodeGroupReg")
-	public String CodeGroupReg(CodeGroupDto dto, Model model) throws Exception {
+	public String form() throws Exception {
 		
-		//System.out.println("dto.getSeq() : " + dto.getSeq());
-
-		return "CodeGroupReg";
+		return "xdm/infra/CodeGroupReg";
+		
 	}
+	
+	@RequestMapping(value = "/CodeGroupFrom")
+	public String codeGroupFrom(CodeGroupDto dto, Model model) throws Exception {
+		
+		System.out.println(dto.toString()+"===============================");
+		model.addAttribute("item", service.selectOne(dto));
+		return "xdm/infra/CodeGroupFrom";
+	}
+	
 	
 	@RequestMapping(value = "/codeGroupInsert")
 	public String CodeGroupInsert(CodeGroupDto dto) throws Exception {
@@ -62,7 +50,7 @@ public class CodeGroupController {
 		
 		System.out.println(dto.toString());
 		service.insert(dto);
-		return "redirect:/productTableList";
+		return "redirect:/CodeGroupXdmList";
 	}
 
 	@RequestMapping(value = "/codeGroupUpdate")
@@ -71,7 +59,7 @@ public class CodeGroupController {
 		//System.out.println("dto.getName() : " + dto.getName());
 		System.out.println(dto.toString()+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		service.update(dto);
-		return "redirect:productTableList";
+		return "redirect:CodeGroupXdmList";
 	}
 	
 	
@@ -82,7 +70,7 @@ public class CodeGroupController {
 		System.out.println(dto.toString()+"---=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=------------------");
 	
 		service.uelete(dto);
-		return "redirect:/productTableList";
+		return "redirect:/CodeGroupXdmList";
 	}
 	
 	@RequestMapping(value = "/codeGroupDelete")
@@ -91,30 +79,11 @@ public class CodeGroupController {
 		//System.out.println("dto.getName() : " + dto.getName());
 		System.out.println(dto.toString()+"+++++++++++++++++++++++++++++++________________+++++++++++++++++++++");
 		service.delete(dto);
-		return "redirect:/productTableList";
-	}
-	
-	@RequestMapping(value = "/Form2")
-	public String form() throws Exception {
-		
-		return "xdm/infra/Form2";
-		
-	}
-	
-	@RequestMapping(value = "/Form3")
-	public String form3(CodeGroupDto dto, Model model) throws Exception {
-		
-		System.out.println(dto.toString()+"===============================");
-		model.addAttribute("item", service.selectOne(dto));
-		return "xdm/infra/Form3";
-		
-		
-		
+		return "redirect:/CodeGroupXdmList";
 	}
 	
 	@RequestMapping(value = "/Login")
 	public String login() throws Exception {
-		
 		
 		return "xdm/infra/Login";
 		

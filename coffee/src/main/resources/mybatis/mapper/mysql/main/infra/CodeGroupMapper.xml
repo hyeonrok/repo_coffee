@@ -52,10 +52,12 @@
 		insert into codeGroup (
 		name
 		,memo
+		,regDatetime
 		,delNy
 		) values (
 		#{name}
 		,#{memo}
+		,#{regDatetime}
 		,#{delNy}
 		)
 	</insert>
