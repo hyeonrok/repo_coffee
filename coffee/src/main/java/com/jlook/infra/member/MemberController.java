@@ -13,10 +13,51 @@ public class MemberController {
 	MemberService service;
 	
 	@RequestMapping(value = "/MemberXdmList")
-	public String memberList(@ModelAttribute("vo") MemberVo vo, Model model) {
+	public String memberXdmList(@ModelAttribute("vo") MemberVo vo, Model model) {
 		
 		model.addAttribute("list", service.selectList(vo));
 		
 		return "xdm/infra/MemberXdmList";
+	}
+	
+	@RequestMapping(value = "/MemberXdmReg")
+	public String memberXdmReg() {
+
+		return "xdm/infra/MemberXdmReg";
+	}
+	
+	@RequestMapping(value = "/MemberXdmForm")
+	public String memberXdmForm(Model model, MemberDto dto) {
+
+		model.addAttribute("item", service.selectOne(dto));
+		return "xdm/infra/MemberXdmForm";
+	}
+	
+	@RequestMapping(value = "/MemberInsert")
+	public String memberInsert(MemberDto dto) {
+		
+		service.insert(dto);
+		return "redirect:/MemberXdmList";
+	}
+	
+	@RequestMapping(value = "/MemberUpdate")
+	public String memberUpdate(MemberDto dto) {
+		
+		service.update(dto);
+		return "redirect:/MemberXdmList";
+	}
+	
+	@RequestMapping(value = "/MemberUelete")
+	public String memberUelete(MemberDto dto) {
+		
+		service.uelete(dto);
+		return "redirect:/MemberXdmList";
+	}
+	
+	@RequestMapping(value = "/MemberDelete")
+	public String memberDelete(MemberDto dto) {
+		
+		service.delete(dto);
+		return "redirect:/MemberXdmList";
 	}
 }

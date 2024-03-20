@@ -46,61 +46,70 @@
 			ORDER BY b.seq ASC
 	</select>
 	
-<!--	<select id="selectOne" resultMap="resultMapObj">-->
-<!--		select-->
-<!--			seq-->
-<!--			,name-->
-<!--			,memo-->
-<!--			,delNy-->
-<!--			,regDatetime-->
-<!--			,modDatetime-->
-<!--		from code -->
-<!--		where 1 = 1-->
-<!--			AND seq = #{seq}-->
-<!--	</select>-->
+	<select id="selectOne" resultMap="resultMapObj">
+		select
+			seq
+            ,memberName
+            ,memberId
+            ,memberPwd
+         	,memberEmail
+         	,genderCd
+         	,birthDay
+         	,phoneNumber
+         	,delNy
+         	,regDatetime
+         	,modDatetime
+		from member 
+		where 1 = 1
+			AND seq = #{seq}
+	</select>
 	
-<!--	<insert id="insert">-->
-<!--		insert into code (-->
-<!--		name-->
-<!--		,memo-->
-<!--		,delNy-->
-<!--		,regDatetime-->
-<!--		,modDatetime-->
-<!--		,codeGroup_seq-->
-<!--		) values (-->
-<!--		#{name}-->
-<!--		,#{memo}-->
-<!--		,0-->
-<!--		,now()-->
-<!--		,now()-->
-<!--		,#{codeGroup_seq}-->
-<!--		)-->
-<!--	</insert>-->
+	<insert id="insert">
+		insert into member (
+		 	memberName
+            ,memberId
+            ,memberPwd
+         	,memberEmail
+         	,genderCd
+         	,birthDay
+         	,phoneNumber
+		) values (
+		#{memberName}
+		,#{memberId}
+		,#{memberPwd}
+		,#{memberEmail}
+		,#{genderCd}
+		,#{birthDay}
+		,#{phoneNumber}
+		)
+	</insert>
 	
-<!--	<update id="update">-->
-<!--		update code-->
-<!--		set-->
-<!--		name = #{name}-->
-<!--		,memo=#{memo}-->
-<!--		,modDatetime=now()-->
-<!--		,delNy=0-->
-<!--		,codeGroup_seq = #{codeGroup_seq}-->
-<!--    		where 1=1-->
-<!--    		and seq = #{seq}-->
-<!--	</update>-->
+	<update id="update">
+		update member
+		set
+			memberName = #{memberName}
+            ,memberId = #{memberId}
+            ,memberPwd = #{memberPwd}
+         	,memberEmail = #{memberEmail}
+         	,genderCd = #{genderCd}
+         	,birthDay = #{birthDay}
+         	,phoneNumber = #{phoneNumber}
+    		where 1=1
+    		and seq = #{seq}
+	</update>
 	
-<!--	<update id="uelete">-->
-<!--		update code-->
-<!--		set-->
-<!--		delNy = 1-->
-<!--    		where 1=1-->
-<!--    		and seq = #{seq}-->
-<!--	</update>-->
+	<update id="uelete">
+		update member
+		set
+		delNy = 1
+    		where 1=1
+    		and seq = #{seq}
+	</update>
 	
-<!--	<delete id="delete">-->
-<!--		delete from code-->
-<!--		where 1 = 1-->
-<!--			and seq = #{seq}-->
-<!--	</delete>-->
+	<delete id="delete">
+		delete from member
+		where 1 = 1
+			and seq = #{seq}
+	</delete>
 	  
 </mapper>
