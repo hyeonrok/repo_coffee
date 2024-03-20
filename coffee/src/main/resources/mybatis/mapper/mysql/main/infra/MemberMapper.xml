@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jlook.infra.member.MemberDao">
+
+	<resultMap id="resultMapObj" type="com.jlook.infra.member.MemberDto"></resultMap>
+
+	<select id="selectList" resultMap="resultMapObj"> <!-- 애매 -->
+
+         select
+            a.seq as code_seq
+             ,a.name as codeName
+             ,b.seq
+             ,b.memberName
+             ,b.memberId
+             ,b.memberPwd
+         	 ,b.memberEmail
+         	 ,b.genderCd
+         	 ,b.birthDay
+         	 ,b.phoneNumber
+         	 ,b.delNy
+         	 ,b.regDatetime
+         	 ,b.modDatetime
+         from 
+             code a
+             
+         left join  member b
+         
+         on  a.seq=b.genderCd
+
+	   WHERE 1=1
+	  
+	        <if test="shDelNy != null and shDelNy.equals('')">AND a.delNy = #{shDelNy}</if>
+	     
+	     
+<!--			<choose>-->
+<!--				<when test="shOptionDate == 1">AND a.regDatetime BETWEEN #{shDateStart} AND #{shDateEnd}</when>-->
+<!--				<when test="shOptionDate == 2">AND a.modDatetime BETWEEN #{shDateStart} AND #{shDateEnd}</when>-->
+<!--			</choose>-->
+	
+	    	 <choose>
+	         	 <when test="shOption == 1">AND a.seq = #{shValue}</when>
+	            <when test="shOption == 2">AND a.name LIKE CONCAT('%',#{shValue},'%')</when>
+	       	 </choose>
+	       	 
+			ORDER BY b.seq ASC
+	</select>
+	
+<!--	<select id="selectOne" resultMap="resultMapObj">-->
+<!--		select-->
+<!--			seq-->
+<!--			,name-->
+<!--			,memo-->
+<!--			,delNy-->
+<!--			,regDatetime-->
+<!--			,modDatetime-->
+<!--		from code -->
+<!--		where 1 = 1-->
+<!--			AND seq = #{seq}-->
+<!--	</select>-->
+	
+<!--	<insert id="insert">-->
+<!--		insert into code (-->
+<!--		name-->
+<!--		,memo-->
+<!--		,delNy-->
+<!--		,regDatetime-->
+<!--		,modDatetime-->
+<!--		,codeGroup_seq-->
+<!--		) values (-->
+<!--		#{name}-->
+<!--		,#{memo}-->
+<!--		,0-->
+<!--		,now()-->
+<!--		,now()-->
+<!--		,#{codeGroup_seq}-->
+<!--		)-->
+<!--	</insert>-->
+	
+<!--	<update id="update">-->
+<!--		update code-->
+<!--		set-->
+<!--		name = #{name}-->
+<!--		,memo=#{memo}-->
+<!--		,modDatetime=now()-->
+<!--		,delNy=0-->
+<!--		,codeGroup_seq = #{codeGroup_seq}-->
+<!--    		where 1=1-->
+<!--    		and seq = #{seq}-->
+<!--	</update>-->
+	
+<!--	<update id="uelete">-->
+<!--		update code-->
+<!--		set-->
+<!--		delNy = 1-->
+<!--    		where 1=1-->
+<!--    		and seq = #{seq}-->
+<!--	</update>-->
+	
+<!--	<delete id="delete">-->
+<!--		delete from code-->
+<!--		where 1 = 1-->
+<!--			and seq = #{seq}-->
+<!--	</delete>-->
+	  
+</mapper>
