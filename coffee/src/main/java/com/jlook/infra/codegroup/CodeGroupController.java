@@ -26,7 +26,7 @@ public class CodeGroupController {
   	}
 	
 	@RequestMapping(value = "/CodeGroupReg")
-	public String form() throws Exception {
+	public String codeGroupReg() throws Exception {
 		
 		return "xdm/infra/CodeGroupReg";
 		

@@ -48,6 +48,7 @@
 			,delNy
 			,regDatetime
 			,modDatetime
+			,codeGroup_seq
 		from code 
 		where 1 = 1
 			AND seq = #{seq}

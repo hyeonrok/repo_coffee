@@ -528,70 +528,120 @@
 						<div class="card-body">
 
 							<!-- 컨테이너 시작 -->
-							<form method="post" action="CodeInsert">
-								<div class="container-fluid">
+							<form method="post">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col mb-3">
+										<div class="card-title">제품 관리</div>
+									</div>
+								</div>
+								
+											<div class="container-fluid">
 									<div class="row">
 										<div class="col mb-3">
-											<div class="card-title">코드 관리</div>
+											<div class="card-title">제품 관리</div>
 										</div>
 
 									</div>
 									<div class="row mt-4">
 										<div class="col-6">
-											<label for="name" class="form-label">이름</label>
-											<input type="text" id="name" name="name" class="form-control" required>
+											<label for="productName" class="form-label">제품이름</label>
+											<input type="text" id="productName" name="productName" class="form-control" th:value="${item.productName}">
 											<div class="invalid-feedback">
-										  			이름을 입력하세요
+										  			제품이름을 입력하세요
 										  	</div>
 										</div>
 										<div class="col-6">
-											<label for="memo" class="form-label">메모</label>
-											<input type="text" id="memo" name="memo" class="form-control" >
+											<label for="productPrice" class="form-label">제품정가</label>
+											<input type="text" id="productPrice" name="productPrice" class="form-control" th:value="${item.productPrice}">
+											<div class="invalid-feedback">
+										  			제품정가를 입력하세요
+										  	</div>
 										</div>
 									</div>
 									<div class="row mt-4">
 										<div class="col-6">
-											<label for="codeGroup_seq" class="form-label">코드그룹 시퀀스</label>
-											<input type="text" id="codeGroup_seq" name="codeGroup_seq" class="form-control" required>
+											<label for="productSalePrice" class="form-label">제품할인가</label>
+											<input type="text" id="productSalePrice" name="productSalePrice" class="form-control" th:value="${item.productSalePrice}">
 											<div class="invalid-feedback">
-										  			코드그룹 시퀀스를 입력하세요
+										  			제품할인가를 입력하세요
+										  	</div>
+										</div>
+										<div class="col-6">
+											<label for="productHotCd" class="form-label">제품Hot</label>
+											<input type="text" id="productHotCd" name="productHotCd" class="form-control" th:value="${item.productHotCd}">
+											<div class="invalid-feedback">
+										  			제품Hot을 입력하세요
 										  	</div>
 										</div>
 									</div>
-									<div class="d-flex justify-content-between mt-4">
-										<div class="">
-											<button type="submit" class="btn btn-info" onclick="javascript: form.action='CodeXdmList';">back</button>       <!--질문 위에 인서트가 있는데 온클릭을 했을때 되는 이-->
+									<div class="row mt-4">
+										<div class="col-6">
+											<label for="productGenderCd" class="form-label">제품성별</label>
+											<input type="text" id="productGenderCd" name="productGenderCd" class="form-control" th:value="${item.productGenderCd}">
+											<div class="invalid-feedback">
+										  			제품성별을 입력하세요
+										  	</div>
 										</div>
-										<div class="">
-											<button type="submit" id="btnSubmit" class="btn btn-info">save</button>
+										<div class="col-6">
+											<label for="productSeasonCd" class="form-label">제품계절</label>
+											<input type="text" id="productSeasonCd" name="productSeasonCd" class="form-control" th:value="${item.productSeasonCd}">
+											<div class="invalid-feedback">
+										  			제품계절을 입력하세요
+										  	</div>
 										</div>
 									</div>
+									<div class="row mt-4">
+										<div class="col-6">
+											<label for="productColorCd" class="form-label">제품색상</label>
+											<input type="text" id="productColorCd" name="productColorCd" class="form-control" th:value="${item.productColorCd}">
+											<div class="invalid-feedback">
+										  			제품색상을 입력하세요
+										  	</div>
+										</div>
+										<div class="col-6">
+											<label for="productSizeCd" class="form-label">제품사이즈</label>
+											<input type="text" id="productSizeCd" name="productSizeCd" class="form-control" th:value="${item.productSizeCd}">
+											<div class="invalid-feedback">
+										  			제품사이즈를 입력하세요
+										  	</div>
+										</div>
+									</div>
+											<div class="d-flex justify-content-between mt-4">
+												<div class="">
+													<button type="submit" class="btn btn-info" formaction="/ProductXdmList">Back</button>
+												</div>
+												<div class="">
+													<button type="submit" class="btn btn-info" formaction="/ProductUelete">Uelete</button>
+													<button type="submit" id="btnSubmit" class="btn btn-info" formaction="/ProductUpdate">수정</button>
+													<button type="submit" id="delete" class="btn btn-info" formaction="/ProductDelete">삭제</button>
+												</div>
+											</div>
+										
 								</div>
-							</form>
-								</div>
-							<!-- 컨테이너 끝 -->
-							<script>
-								(function () {
-									'use strict'
+								</form>
+								<!-- 컨테이너 끝 -->
+								<script>
+									(function () {
+										'use strict'
 
-									// Fetch all the forms we want to apply custom Bootstrap validation styles to
-									var forms = document.querySelectorAll('.needs-validation')
+										// Fetch all the forms we want to apply custom Bootstrap validation styles to
+										var forms = document.querySelectorAll('.needs-validation')
 
-									// Loop over them and prevent submission
-									Array.prototype.slice.call(forms)
-										.forEach(function (form) {
-											form.addEventListener('submit', function (event) {
-												if (!form.checkValidity()) {
-													event.preventDefault()
-													event.stopPropagation()
-												}
+										// Loop over them and prevent submission
+										Array.prototype.slice.call(forms)
+											.forEach(function (form) {
+												form.addEventListener('submit', function (event) {
+													if (!form.checkValidity()) {
+														event.preventDefault()
+														event.stopPropagation()
+													}
 
-												form.classList.add('was-validated')
-											}, false)
-										})
-								})()
-							
-										//자바스크립트 버튼
+													form.classList.add('was-validated')
+												}, false)
+											})
+									})()
+									
 	document.getElementById("btnSubmit").onclick = function() {
 	
 	if(validationInst() == false)return false;
@@ -606,28 +656,57 @@
 			}
 	}
 	
-	//function validationUpdt() {
-	//	alert("name: " + document.getElementById("name").value)
-	//}					
-	
-	// 유효성 검사 여러개는 getElementsByClassName로 사용해서 클래스를 받아와야 한
-	
 	function validationUpdt(){
-		if(!nullToEmpty(document.getElementById("name").value)) {
+		if(!nullToEmpty(document.getElementById("productName").value)) {
 			
-			document.getElementById("name").setAttribute("class", "form-control is-invalid");
+			document.getElementById("productName").setAttribute("class", "form-control is-invalid");
 			return false;
 			
 		}
-		if(!nullToEmpty(document.getElementById("codeGroup_seq").value)) {
+		if(!nullToEmpty(document.getElementById("productPrice").value)) {
 			
-			document.getElementById("codeGroup_seq").setAttribute("class", "form-control is-invalid");
+			document.getElementById("productPrice").setAttribute("class", "form-control is-invalid");
+			return false;
+			
+		}
+		if(!nullToEmpty(document.getElementById("productSalePrice").value)) {
+			
+			document.getElementById("productSalePrice").setAttribute("class", "form-control is-invalid");
+			return false;
+			
+		}
+		if(!nullToEmpty(document.getElementById("productHotCd").value)) {
+			
+			document.getElementById("productHotCd").setAttribute("class", "form-control is-invalid");
+			return false;
+			
+		}
+		if(!nullToEmpty(document.getElementById("productGenderCd").value)) {
+			
+			document.getElementById("productGenderCd").setAttribute("class", "form-control is-invalid");
+			return false;
+			
+		}
+		if(!nullToEmpty(document.getElementById("productSeasonCd").value)) {
+			
+			document.getElementById("productSeasonCd").setAttribute("class", "form-control is-invalid");
+			return false;
+			
+		}
+		if(!nullToEmpty(document.getElementById("productColorCd").value)) {
+			
+			document.getElementById("productColorCd").setAttribute("class", "form-control is-invalid");
+			return false;
+			
+		}
+		if(!nullToEmpty(document.getElementById("productSizeCd").value)) {
+			
+			document.getElementById("productSizeCd").setAttribute("class", "form-control is-invalid");
 			return false;
 			
 		}
 		
 	}
-	
 	nullToEmpty = function(value){
 		if(value == null || value == 'null' || value.length == 0){
 			return false;
@@ -635,61 +714,61 @@
 			return true;
 		}
 	}
-							</script>
+								</script>
+							</div>
 						</div>
+						<!-- Card end -->
+
 					</div>
-					<!-- Card end -->
+					<!-- Content wrapper end -->
+
+					<!-- App Footer start -->
+					<div class="app-footer">
+						<span>© Bootstrap Gallery 2023</span>
+					</div>
+					<!-- App footer end -->
 
 				</div>
-				<!-- Content wrapper end -->
-
-				<!-- App Footer start -->
-				<div class="app-footer">
-					<span>© Bootstrap Gallery 2023</span>
-				</div>
-				<!-- App footer end -->
+				<!-- Content wrapper scroll end -->
 
 			</div>
-			<!-- Content wrapper scroll end -->
-
-		</div>
-		<!-- *************
+			<!-- *************
 				************ Main container end *************
 			************* -->
 
-	</div>
-	<!-- Page wrapper end -->
+		</div>
+		<!-- Page wrapper end -->
 
-	<!-- *************
+		<!-- *************
 			************ Required JavaScript Files *************
 		************* -->
-	<!-- Required jQuery first, then Bootstrap Bundle JS -->
-	<script src="/xdm/assets/js/jquery.min.js"></script>
-	<script src="/xdm/assets/js/bootstrap.bundle.min.js"></script>
-	<script src="/xdm/assets/js/modernizr.js"></script>
-	<script src="/xdm/assets/js/moment.js"></script>
+		<!-- Required jQuery first, then Bootstrap Bundle JS -->
+		<script src="/xdm/assets/js/jquery.min.js"></script>
+		<script src="/xdm/assets/js/bootstrap.bundle.min.js"></script>
+		<script src="/xdm/assets/js/modernizr.js"></script>
+		<script src="/xdm/assets/js/moment.js"></script>
 
-	<!-- *************
+		<!-- *************
 			************ Vendor Js Files *************
 		************* -->
 
-	<!-- Overlay Scroll JS -->
-	<script src="/xdm/assets/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
-	<script src="/xdm/assets/vendor/overlay-scroll/custom-scrollbar.js"></script>
+		<!-- Overlay Scroll JS -->
+		<script src="/xdm/assets/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
+		<script src="/xdm/assets/vendor/overlay-scroll/custom-scrollbar.js"></script>
 
-	<!-- Date Range JS -->
-	<script src="/xdm/assets/vendor/daterange/daterange.js"></script>
-	<script src="/xdm/assets/vendor/daterange/custom-daterange.js"></script>
+		<!-- Date Range JS -->
+		<script src="/xdm/assets/vendor/daterange/daterange.js"></script>
+		<script src="/xdm/assets/vendor/daterange/custom-daterange.js"></script>
 
-	<!-- Dropzone JS -->
-	<script src="/xdm/assets/vendor/dropzone/dropzone.min.js"></script>
+		<!-- Dropzone JS -->
+		<script src="/xdm/assets/vendor/dropzone/dropzone.min.js"></script>
 
-	<!-- Main Js Required -->
-	<script src="/xdm/assets/js/main.js"></script>
+		<!-- Main Js Required -->
+		<script src="/xdm/assets/js/main.js"></script>
 
-	<!-- Bootstrap Select JS -->
-	<script src="/xdm/assets/vendor/bs-select/bs-select.min.js"></script>
-	<script src="/xdm/assets/vendor/bs-select/bs-select-custom.js"></script>
+		<!-- Bootstrap Select JS -->
+		<script src="/xdm/assets/vendor/bs-select/bs-select.min.js"></script>
+		<script src="/xdm/assets/vendor/bs-select/bs-select-custom.js"></script>
 </body>
 
 </html>

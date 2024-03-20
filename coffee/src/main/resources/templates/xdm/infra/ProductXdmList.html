@@ -47,8 +47,9 @@
 
 	<!-- Datetime picker JS -->
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" media="screen"href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+
 
 </head>
 
@@ -85,7 +86,7 @@
 			<div class="sidebar-menu">
 				<div class="sidebarMenuScroll">
 					<ul>
-						<li class="sidebar-dropdown active">
+						<li class="sidebar-dropdown">
 							<a href="#">
 								<i class="bi bi-house"></i>
 								<span class="menu-text">코드/코드그룹</span>
@@ -114,7 +115,7 @@
 								</ul>
 							</div>
 						</li>
-						<li class="sidebar-dropdown">
+						<li class="sidebar-dropdown active">
 							<a href="#">
 								<i class="bi bi-handbag"></i>
 								<span class="menu-text">제품관리</span>
@@ -251,7 +252,7 @@
 						<div class="card-header row">
 
 							<div class="col mb-3">
-								<div class="card-title">코드 관리</div>
+								<div class="card-title">제품 관리</div>
 							</div>
 
 
@@ -307,7 +308,7 @@
 						</div>
 					</div>
 				</div>
-				</form>
+			</form>
 				<!-- Row end -->
 				<!-- 테이블 시작-->
 				<!-- 테이블 컨테이너 시작-->
@@ -341,14 +342,19 @@
 														id="flexCheckChecked" checked>
 													<label class="form-check-label" for="flexCheckChecked"></label>
 												</td>
-												<td>코드그룹 seq</td>
-												<td>코드그룹 이름</td>
 												<td>seq</td>
-												<th>삭제여부</th>
-												<th>이름</th>
-												<th>등록일</th>
-												<th>수정일</th>
-											</tr>
+												<td>삭제여부</td>
+												<td>제품명</td>
+												<td>제품정가</td>
+												<td>제품할인가</td>
+												<td>제품Hot</td>
+												<td>제품성별</td>
+												<td>제품계절</td>
+												<td>제품색상</td>
+												<td>제품사이즈</td>
+												<td>등록일</td>
+												<td>수정일</td>
+											</td>
 										</thead>
 									</div>
 								</div>
@@ -358,16 +364,20 @@
 											checked>
 										<label class="form-check-label" for="flexCheckChecked"></label>
 									</td>
-									<td th:text="${list.codeGroup_seq}"></td>
-									<td><a th:href="@{/CodeForm(seq=${list.seq})}"
-											th:text="${list.codeGroupName}"></a></td>
-									<!-- seq number -->
+									<!--seq number -->
 									<td th:text="${list.seq}"></td>
 									<td th:if="${list.delNy eq 0}">N</td>
 									<td th:unless="${list.delNy eq 0}">Y</td>
-									<td><a th:href="@{/CodeForm(seq=${list.seq})}"
-											th:text="${list.name}"></a></td>
+									<td><a th:href="@{/ProductXdmForm(seq=${list.seq})}"
+										th:text="${list.productName}"></a></td>				
 									<!-- 등록일 수정일 -->
+									<td th:text="${list.productPrice}"></td>
+									<td th:text="${list.productSalePrice}"></td>
+									<td th:text="${list.productHotCd}"></td>
+									<td th:text="${list.productGenderCd}"></td>
+									<td th:text="${list.productSeasonCd}"></td>
+									<td th:text="${list.productColorCd}"></td>
+									<td th:text="${list.productSizeCd}"></td>
 									<td th:text="${#dates.format(list.regDatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>
 									<td th:text="${#dates.format(list.modDatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>
 
@@ -423,7 +433,7 @@
 								</button>
 							</div>
 							<div class="col-1 mt-2 mb-2 float-right">
-								<a th:href="@{/CodeReg}"><button type="submit" class="btn btn-info" data-bs-toggle="modal"
+								<a th:href="@{/ProductXdmReg}"><button type="submit" class="btn btn-info"  data-bs-toggle="modal"
 										data-bs-target="#verticallyCentered-mod">
 										+
 									</button></a>
@@ -471,6 +481,7 @@
 			</div>
 		</div>
 	</div>
+	
 
 
 	<!-- *************
@@ -498,8 +509,13 @@
 	<script src="/xdm/assets/js/main.js"></script>
 
 
-	<!-- Date picker Js -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+	 
+	
+
+<!-- go스크립트 -->
+<!-- 강사님 데이터 피커 -->
+	<!--데이터피커 자바스크립트 구문-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
         <script type="text/javascript">
             $(function () {
                 $("#shDateStart, #shDateEnd").datetimepicker({
@@ -507,12 +523,13 @@
                     timepicker:false,
                 });
             });
-            
-            let goUrlXdmList = "/CodeXdmList";								/* ### */
-	let goUrlXdmForm = "/CodeReg";								/* ### */
-	let goUrlXdmMultiUele = "/v1/infra/code/codeXdmMultiUele";			/* ### */
-	let goUrlXdmMultiDele = "/v1/infra/code/codeXdmMultiDele";			/* ### */
-	let goUrlXdmView = "/CodeForm";								/* ### */
+   
+	
+	let goUrlXdmList = "/ProductXdmList";								/* ### */
+	let goUrlXdmForm = "/ProductXdmReg";								/* ### */
+	let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele";			/* ### */
+	let goUrlXdmMultiDele = "/v1/infra/codegroup/codeGroupXdmMultiDele";			/* ### */
+	let goUrlXdmView = "/ProductXdmForm";								/* ### */
 	
 	let seq = document.querySelector("input[name=ifcgSeq]");									/* ### */
 	
@@ -547,8 +564,8 @@
 	    }
 	}
 	
-		</script>
-
+	
+</script>
 
 </body>
 
