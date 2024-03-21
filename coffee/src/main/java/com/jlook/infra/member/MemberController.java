@@ -60,4 +60,13 @@ public class MemberController {
 		service.delete(dto);
 		return "redirect:/MemberXdmList";
 	}
+	
+	
+//	-------------------------- usr --------------------------------
+	
+	@RequestMapping(value = "/register")
+	public String register() {
+
+		return "usr/infra/register";
+	}
 }

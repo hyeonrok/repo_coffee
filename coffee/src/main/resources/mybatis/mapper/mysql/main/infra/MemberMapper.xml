@@ -8,29 +8,21 @@
 	<select id="selectList" resultMap="resultMapObj"> <!-- 애매 -->
 
          select
-            a.seq as code_seq
-             ,a.name as codeName
-             ,b.seq
-             ,b.memberName
-             ,b.memberId
-             ,b.memberPwd
-         	 ,b.memberEmail
-         	 ,b.genderCd
-         	 ,b.birthDay
-         	 ,b.phoneNumber
-         	 ,b.delNy
-         	 ,b.regDatetime
-         	 ,b.modDatetime
+             seq
+             ,memberName
+             ,memberId
+             ,memberPwd
+         	 ,memberEmail
+         	 ,genderCd
+         	 ,birthDay
+         	 ,phoneNumber
+         	 ,delNy
+         	 ,regDatetime
+         	 ,modDatetime
          from 
-             code a
-             
-         left join  member b
-         
-         on  a.seq=b.genderCd
-
-	   WHERE 1=1
+             member
 	  
-	        <if test="shDelNy != null and shDelNy.equals('')">AND a.delNy = #{shDelNy}</if>
+	        <if test="shDelNy != null and shDelNy.equals('')">AND delNy = #{shDelNy}</if>
 	     
 	     
 <!--			<choose>-->
@@ -39,11 +31,11 @@
 <!--			</choose>-->
 	
 	    	 <choose>
-	         	 <when test="shOption == 1">AND a.seq = #{shValue}</when>
-	            <when test="shOption == 2">AND a.name LIKE CONCAT('%',#{shValue},'%')</when>
+	         	 <when test="shOption == 1">AND seq = #{shValue}</when>
+	            <when test="shOption == 2">AND name LIKE CONCAT('%',#{shValue},'%')</when>
 	       	 </choose>
 	       	 
-			ORDER BY b.seq ASC
+			ORDER BY seq ASC
 	</select>
 	
 	<select id="selectOne" resultMap="resultMapObj">
