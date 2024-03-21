@@ -546,7 +546,12 @@
 												</div>
 												<div class="col-6">
 													<label for="genderCd" class="form-label">성별</label>
-													<input type="text" id="genderCd" name="genderCd" class="form-control" th:value="${item.genderCd}" required>
+													<select id="genderCd" name="genderCd" class="form-select">
+														<option value="">선택하세요</option>
+														<option th:each="list : ${@codeService.selectListCachedCode(8)}" th:value="${list.codeGroup_seq}" th:text="${list.name}" th:selected="${list.codeGroup_seq} == ${item?.genderCd}"></option>
+													</select>
+<!--													<label for="genderCd" class="form-label">성별</label>-->
+<!--													<input type="text" id="genderCd" name="genderCd" class="form-control" th:value="${item.genderCd}" required>-->
 													<div class="invalid-feedback">
 												  			성별을 입력하세요
 												 	</div>

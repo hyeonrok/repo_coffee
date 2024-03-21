@@ -291,8 +291,8 @@
 											<div class="col-3">
 												<select id="shOption" name="shOption" class="form-select form-select-sm">
 													<option value="" th:selected="${vo.shOption == null}">검색구분</option>
-													<option value="1" th:selected="${vo.shOption == 1}">코드그룹 seq</option>
-													<option value="2" th:selected="${vo.shOption == 2}">코드그룹 name</option>
+													<option value="1" th:selected="${vo.shOption == 1}">멤버 seq</option>
+													<option value="2" th:selected="${vo.shOption == 2}">멤버 name</option>
 												</select>
 											</div>  
 											<div class="col-3">
@@ -370,7 +370,9 @@
 									<td><a th:href="@{/MemberXdmForm(seq=${list.seq})}"
 										th:text="${list.memberName}"></a></td>				
 									<!-- 등록일 수정일 -->
-									<td th:text="${list.genderCd}"></td>
+<!--									<td th:text="${list.genderCd}"></td>-->
+									<td th:if="${list.genderCd != null}" th:text="${@codeService.selectOneCachedCode(list.genderCd)}" class="genderCd align-middle"></td>
+									<td th:unless="${list.genderCd != null}" class="ifmmGenderCd align-middle"></td>
 									<td th:text="${list.memberId}"></td>
 									<td th:text="${list.memberPwd}"></td>
 									<td th:text="${list.memberEmail}"></td>

@@ -78,7 +78,7 @@
             <!-- page title area end -->
 <!--회원가입 화면-->
             <!-- login Area Strat-->
-             <form method="post" action="MemberInsert">
+             <form method="post" action="usrInsert">
             <section class="login-area pt-50 pb-100">
                 <div class="container">
                     <div class="row">
@@ -212,48 +212,56 @@
 		if(!nullToEmpty(document.getElementById("memberId").value)) {
 			
 			document.getElementById("memberId").setAttribute("class", "form-control is-invalid");
+			document.getElementById("memberId").focus();
 			return false;
 			
 		}
 		if(!nullToEmpty(document.getElementById("memberPwd").value)) {
 			
 			document.getElementById("memberPwd").setAttribute("class", "form-control is-invalid");
+			document.getElementById("memberId").focus();
 			return false;
 			
 		}
 		if(!nullToEmpty(document.getElementById("memberEmail").value)) {
 			
 			document.getElementById("memberEmail").setAttribute("class", "form-control is-invalid");
+			document.getElementById("memberId").focus();
 			return false;
 			
 		}
 		if(!nullToEmpty(document.getElementById("memberName").value)) {
 			
 			document.getElementById("memberName").setAttribute("class", "form-control is-invalid");
+			document.getElementById("memberId").focus();
 			return false;
 			
 		}
 		if(!nullToEmpty(document.getElementById("birthDay").value)) {
 			
 			document.getElementById("birthDay").setAttribute("class", "form-control is-invalid");
+			document.getElementById("memberId").focus();
 			return false;
 			
 		}
 		if(!nullToEmpty(document.getElementById("birthDay").value)) {
 			
 			document.getElementById("birthDay").setAttribute("class", "form-control is-invalid");
+			document.getElementById("memberId").focus();
 			return false;
 			
 		}
 		if(!nullToEmpty(document.getElementById("genderCd").value)) {
 			
 			document.getElementById("genderCd").setAttribute("class", "form-control is-invalid");
+			document.getElementById("memberId").focus();
 			return false;
 			
 		}
 		if(!nullToEmpty(document.getElementById("phoneNumber").value)) {
 			
 			document.getElementById("phoneNumber").setAttribute("class", "form-control is-invalid");
+			document.getElementById("memberId").focus();
 			return false;
 			
 		}

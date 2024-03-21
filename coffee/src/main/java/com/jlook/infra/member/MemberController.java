@@ -14,6 +14,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/MemberXdmList")
 	public String memberXdmList(@ModelAttribute("vo") MemberVo vo, Model model) {
+		System.out.println(vo.toString()+ " -------------------------");
 		
 		model.addAttribute("list", service.selectList(vo));
 		
@@ -68,5 +69,18 @@ public class MemberController {
 	public String register() {
 
 		return "usr/infra/register";
+	}
+	
+	@RequestMapping(value = "/index")
+	public String index() {
+		
+		return "usr/infra/index";
+	}
+	
+	@RequestMapping(value = "/usrInsert")
+	public String usrInsert(MemberDto dto) {
+		
+		service.insert(dto);
+		return "redirect:/index";
 	}
 }
