@@ -358,18 +358,18 @@
 											checked>
 										<label class="form-check-label" for="flexCheckChecked"></label>
 									</td>
-									<td th:text="${list.codeGroup_seq}"></td>
-									<td><a th:href="@{/CodeForm(seq=${list.seq})}"
+									<td th:text="${list.codeGroupSeqF}"></td>
+									<td><a th:href="@{/CodeForm(codeSeq=${list.codeSeq})}"
 											th:text="${list.codeGroupName}"></a></td>
 									<!-- seq number -->
-									<td th:text="${list.seq}"></td>
-									<td th:if="${list.delNy eq 0}">N</td>
-									<td th:unless="${list.delNy eq 0}">Y</td>
-									<td><a th:href="@{/CodeForm(seq=${list.seq})}"
-											th:text="${list.name}"></a></td>
+									<td th:text="${list.codeSeq}"></td>
+									<td th:if="${list.codeDelNy eq 0}">N</td>
+									<td th:unless="${list.codeDelNy eq 0}">Y</td>
+									<td><a th:href="@{/CodeForm(codeSeq=${list.codeSeq})}"
+											th:text="${list.codeName}"></a></td>
 									<!-- 등록일 수정일 -->
-									<td th:text="${#dates.format(list.regDatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>
-									<td th:text="${#dates.format(list.modDatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+									<td th:text="${#dates.format(list.codeRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+									<td th:text="${#dates.format(list.codeModDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 
 								</tr>
 

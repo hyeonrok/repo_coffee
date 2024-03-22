@@ -538,21 +538,21 @@
 									</div>
 									<div class="row mt-4">
 										<div class="col-6">
-											<label for="name" class="form-label">이름</label>
-											<input type="text" id="name" name="name" class="form-control" required>
+											<label for="codeName" class="form-label">이름</label>
+											<input type="text" id="codeName" name="codeName" class="form-control" required>
 											<div class="invalid-feedback">
 										  			이름을 입력하세요
 										  	</div>
 										</div>
 										<div class="col-6">
-											<label for="memo" class="form-label">메모</label>
-											<input type="text" id="memo" name="memo" class="form-control" >
+											<label for="codeMemo" class="form-label">메모</label>
+											<input type="text" id="codeMemo" name="codeMemo" class="form-control" >
 										</div>
 									</div>
 									<div class="row mt-4">
 										<div class="col-6">
-											<label for="codeGroup_seq" class="form-label">코드그룹 시퀀스</label>
-											<input type="text" id="codeGroup_seq" name="codeGroup_seq" class="form-control" required>
+											<label for="codeGroupSeqF" class="form-label">코드그룹 시퀀스</label>
+											<input type="text" id="codeGroupSeqF" name="codeGroupSeqF" class="form-control" required>
 											<div class="invalid-feedback">
 										  			코드그룹 시퀀스를 입력하세요
 										  	</div>
@@ -613,15 +613,15 @@
 	// 유효성 검사 여러개는 getElementsByClassName로 사용해서 클래스를 받아와야 한
 	
 	function validationUpdt(){
-		if(!nullToEmpty(document.getElementById("name").value)) {
+		if(!nullToEmpty(document.getElementById("codeName").value)) {
 			
-			document.getElementById("name").setAttribute("class", "form-control is-invalid");
+			document.getElementById("codeName").setAttribute("class", "form-control is-invalid");
 			return false;
 			
 		}
-		if(!nullToEmpty(document.getElementById("codeGroup_seq").value)) {
+		if(!nullToEmpty(document.getElementById("codeGroupSeqF").value)) {
 			
-			document.getElementById("codeGroup_seq").setAttribute("class", "form-control is-invalid");
+			document.getElementById("codeGroupSeqF").setAttribute("class", "form-control is-invalid");
 			return false;
 			
 		}

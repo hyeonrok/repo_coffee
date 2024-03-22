@@ -358,14 +358,14 @@
 										<label class="form-check-label" for="flexCheckChecked"></label>
 									</td>
 									<!-- seq number -->
-									<td th:text="${list.seq}"></td>
-									<td th:if="${list.delNy eq 0}">N</td>
-									<td th:unless="${list.delNy eq 0}">Y</td>
-									<td><a th:href="@{/CodeGroupForm(seq=${list.seq})}"
-											th:text="${list.name}"></a></td>				
+									<td th:text="${list.codeGroupSeq}"></td>
+									<td th:if="${list.codeGroupDelNy eq 0}">N</td>
+									<td th:unless="${list.codeGroupDelNy eq 0}">Y</td>
+									<td><a th:href="@{/CodeGroupForm(codeGroupSeq=${list.codeGroupSeq})}"
+											th:text="${list.codeGroupName}"></a></td>				
 									<!-- 등록일 수정일 -->
-									<td th:text="${#dates.format(list.regDatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>
-									<td th:text="${#dates.format(list.modDatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+									<td th:text="${#dates.format(list.codeGroupRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+									<td th:text="${#dates.format(list.codeGroupModDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 
 								</tr>
 

@@ -59,6 +59,7 @@ public class ProductController {
 	public String productDelete(ProductDto dto) {
 		
 		service.delete(dto);
+		System.out.println(dto.toString()+"--------------------------");
 		return "redirect:/ProductXdmList";
 	}
 }

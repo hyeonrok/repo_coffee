@@ -53,10 +53,10 @@ public class CodeService {
 		System.out.println("cachedCodeArrayList: " + CodeDto.cachedCodeArrayList.size() + " chached !");
 	}
 	
-	public static List<CodeDto> selectListCachedCode(String codeGroup_seq) throws Exception {
+	public static List<CodeDto> selectListCachedCode(String codeGroupSeqF) throws Exception {
 		List<CodeDto> rt = new ArrayList<CodeDto>();
 		for(CodeDto codeRow : CodeDto.cachedCodeArrayList) {
-			if (codeRow.getCodeGroup_seq().equals(codeGroup_seq)) {
+			if (codeRow.getCodeGroupSeqF().equals(codeGroupSeqF)) {
 				rt.add(codeRow);
 			} else {
 				// by pass
@@ -68,8 +68,8 @@ public class CodeService {
 	public static String selectOneCachedCode(int code) throws Exception {
 		String rt = "";
 		for(CodeDto codeRow : CodeDto.cachedCodeArrayList) {
-			if (codeRow.getSeq().equals(Integer.toString(code))) {
-				rt = codeRow.getName();
+			if (codeRow.getCodeSeq().equals(Integer.toString(code))) {
+				rt = codeRow.getCodeName();
 			} else {
 				// by pass
 			}

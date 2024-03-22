@@ -7,18 +7,18 @@
 
    <select id="selectList" resultMap="resultMapObj">
         select
-        a.delNY
-     	,a.seq
-		, a.name
-		,a.modDatetime
-		, a.regDatetime
-		, (select count(*) from code aa where aa.codeGroup_seq=a.seq) as xseqCount
+     	a.codeGroupSeq
+		, a.codeGroupName
+        , a.codeGroupDelNy
+		, a.codeGroupModDate
+		, a.codeGroupRegDate
+		, (select count(*) from code aa where aa.codeGroupSeqF=a.codeGroupSeq) as xseqCount
 		
 		
 		from codeGroup a
 	   WHERE 1=1
 	  
-	        <if test="shDelNy != null and shDelNy.equals('')">AND a.delNy = #{shDelNy}</if>
+	        <if test="shDelNy != null and shDelNy.equals('')">AND a.codeGroupDelNy = #{shDelNy}</if>
 	     
 	     <!--
 			<choose>
@@ -27,8 +27,8 @@
 			</choose>
 	-->
 	    	 <choose>
-	         	 <when test="shOption == 1">AND a.seq = #{shValue}</when>
-	            <when test="shOption == 2">AND a.name LIKE CONCAT('%',#{shValue},'%')</when>
+	         	 <when test="shOption == 1">AND a.codeGroupSeq = #{shValue}</when>
+	            <when test="shOption == 2">AND a.codeGroupName LIKE CONCAT('%',#{shValue},'%')</when>
 	       	 </choose>
     </select>
 
@@ -37,27 +37,27 @@
     
     <select id="selectOne" resultMap="resultMapObj">
 		select
-			seq
-			,name
-			,memo
-			,delNy
-			,regDatetime
-			,modDatetime
+			codeGroupSeq
+			,codeGroupName
+			,codeGroupMemo
+			,codeGroupDelNy
+			,codeGroupRegDate
+			,codeGroupModDate
 		from codeGroup 
 		where 1=1
-			AND seq = #{seq}
+			AND codeGroupSeq = #{codeGroupSeq}
 	</select>
 	
 	<insert id="insert">
 		insert into codeGroup (
-		name
-		,memo
-		,regDatetime
-		,modDatetime
-		,delNy
+		codeGroupName
+		,codeGroupMemo
+		,codeGroupRegDate
+		,codeGroupModDate
+		,codeGroupDelNy
 		) values (
-		#{name}
-		,#{memo}
+		#{codeGroupName}
+		,#{codeGroupMemo}
 		,now()
 		,now()
 		,0
@@ -67,27 +67,27 @@
 	<update id="update">
 		update codeGroup
 		set
-		name=#{name} 
-		,memo=#{memo}
-		,modDatetime=now()
-		,delNy=0
+		codeGroupName=#{codeGroupName} 
+		,codeGroupMemo=#{codeGroupMemo}
+		,codeGroupModDate=now()
+		,codeGroupDelNy=0
     		where 1=1
-    		and seq=#{seq}
+    		and codeGroupSeq=#{codeGroupSeq}
 	</update>
 	
 	<update id="uelete">
 		update codeGroup
 		set
-		delNy=1
+		codeGroupDelNy=1
     		where 1=1
-    		and seq=#{seq}
+    		and codeGroupSeq=#{codeGroupSeq}
     		
 	</update>
 	
 	<delete id="delete">
 		delete from codeGroup
 		where 1=1
-			and seq=#{seq}
+			and codeGroupSeq=#{codeGroupSeq}
 	</delete>
 	
 </mapper>

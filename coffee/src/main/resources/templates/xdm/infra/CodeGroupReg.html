@@ -538,15 +538,15 @@
 									</div>
 									<div class="row mt-4">
 										<div class="col-6">
-											<label for="validationCustom01" class="form-label">이름</label>
-											<input type="text" id="name" name="name" class="form-control">
+											<label for="codeGroupName" class="form-label">이름</label>
+											<input type="text" id="codeGroupName" name="codeGroupName" class="form-control">
 											<div class="invalid-feedback">
 										  			이름을 입력하세요
 										  	</div>
 										</div>
 										<div class="col-6">
-											<label for="validationCustom01" class="form-label">메모</label>
-											<input type="text" id="memo" name="memo" class="form-control">
+											<label for="codeGroupMemo" class="form-label">메모</label>
+											<input type="text" id="codeGroupMemo" name="codeGroupMemo" class="form-control">
 										</div>
 									</div>
 									<div class="d-flex justify-content-between mt-4">
@@ -602,9 +602,9 @@
 	//}					
 	
 	function validationUpdt(){
-		if(!nullToEmpty(document.getElementById("name").value)) {
+		if(!nullToEmpty(document.getElementById("codeGroupName").value)) {
 			
-			document.getElementById("name").setAttribute("class", "form-control is-invalid");
+			document.getElementById("codeGroupName").setAttribute("class", "form-control is-invalid");
 			return false;
 			
 		}

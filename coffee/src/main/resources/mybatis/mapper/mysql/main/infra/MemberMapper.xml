@@ -7,29 +7,8 @@
 
 	<select id="selectList" resultMap="resultMapObj"> <!-- 애매 -->
 
-<!--         select-->
-<!--             a.seq-->
-<!--             ,a.memberName-->
-<!--             ,a.memberId-->
-<!--             ,a.memberPwd-->
-<!--         	 ,a.memberEmail-->
-<!--         	 ,a.genderCd-->
-<!--         	 ,a.birthDay-->
-<!--         	 ,a.phoneNumber-->
-<!--         	 ,a.delNy-->
-<!--         	 ,a.regDatetime-->
-<!--         	 ,a.modDatetime-->
-<!--         	 ,b.seq as codeSeq-->
-<!--         	 ,b.name as codeName-->
-<!--         from -->
-<!--             member a-->
-             
-<!--              left join  code b-->
-         
-<!--         on  b.seq=a.genderCd-->
-
          select
-             seq
+             memberSeq
              ,memberName
              ,memberId
              ,memberPwd
@@ -37,13 +16,14 @@
          	 ,genderCd
          	 ,birthDay
          	 ,phoneNumber
-         	 ,delNy
-         	 ,regDatetime
-         	 ,modDatetime
+         	 ,memberDelNy
+         	 ,memberRegDate
+         	 ,memberModDate
          from 
              member 
 	   WHERE 1=1
-	        <if test="shDelNy != null and shDelNy.equals('')">AND delNy = #{shDelNy}</if>
+	   
+	        <if test="shDelNy != null and shDelNy.equals('')">AND memberDelNy = #{shDelNy}</if>
 	     
 	     
 <!--			<choose>-->
@@ -52,7 +32,7 @@
 <!--			</choose>-->
 	
 	    	 <choose>
-	         	 <when test="shOption == 1">AND seq = #{shValue}</when>
+	         	 <when test="shOption == 1">AND memberSeq = #{shValue}</when>
 	            <when test="shOption == 2">AND memberName LIKE CONCAT('%',#{shValue},'%')</when>
 	       	 </choose>
 	       	 
@@ -60,7 +40,7 @@
 	
 	<select id="selectOne" resultMap="resultMapObj">
 		select
-			seq
+			memberSeq
             ,memberName
             ,memberId
             ,memberPwd
@@ -68,12 +48,12 @@
          	,genderCd
          	,birthDay
          	,phoneNumber
-         	,delNy
-         	,regDatetime
-         	,modDatetime
+         	,memberDelNy
+         	,memberRegDate
+         	,memberModDate
 		from member 
 		where 1 = 1
-			AND seq = #{seq}
+			AND memberSeq = #{memberSeq}
 	</select>
 	
 	<insert id="insert">
@@ -107,21 +87,21 @@
          	,birthDay = #{birthDay}
          	,phoneNumber = #{phoneNumber}
     		where 1=1
-    		and seq = #{seq}
+    		and memberSeq = #{memberSeq}
 	</update>
 	
 	<update id="uelete">
 		update member
 		set
-		delNy = 1
+		memberDelNy = 1
     		where 1=1
-    		and seq = #{seq}
+    		and memberSeq = #{memberSeq}
 	</update>
 	
 	<delete id="delete">
 		delete from member
 		where 1 = 1
-			and seq = #{seq}
+			and memberSeq = #{memberSeq}
 	</delete>
 	
 

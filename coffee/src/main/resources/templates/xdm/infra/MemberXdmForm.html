@@ -548,7 +548,7 @@
 													<label for="genderCd" class="form-label">성별</label>
 													<select id="genderCd" name="genderCd" class="form-select">
 														<option value="">선택하세요</option>
-														<option th:each="list : ${@codeService.selectListCachedCode(8)}" th:value="${list.codeGroup_seq}" th:text="${list.name}" th:selected="${list.codeGroup_seq} == ${item?.genderCd}"></option>
+														<option th:each="list : ${@codeService.selectListCachedCode(8)}" th:value="${list.codeGroupSeqF}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.genderCd}"></option>
 													</select>
 <!--													<label for="genderCd" class="form-label">성별</label>-->
 <!--													<input type="text" id="genderCd" name="genderCd" class="form-control" th:value="${item.genderCd}" required>-->
@@ -599,7 +599,7 @@
 												</div>
 													<div class="col-6">
 														<label class="form-label">seq</label>
-														<input type="text" name="seq" class="form-control" th:value="${item.seq}">
+														<input type="text" name="memberSeq" class="form-control" th:value="${item.memberSeq}">
 													</div>
 											</div>
 											

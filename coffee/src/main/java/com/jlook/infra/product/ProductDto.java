@@ -4,25 +4,23 @@ import java.util.Date;
 
 public class ProductDto {
 
-	private String seq;
+	private String productSeq;
 	private String productName;
 	private String productPrice;
 	private String productSalePrice;
-	private String productImg;
 	private Integer productHotCd;
 	private Integer productGenderCd;
 	private Integer productSeasonCd;
 	private Integer productColorCd;
 	private Integer productSizeCd;
-	private Integer delivaryStatusCd;
-	private Integer delNy;
-	private Date regDatetime;
-	private Date modDatetime;
-	public String getSeq() {
-		return seq;
+	private Integer productDelNy;
+	private Date productRegDate;
+	private Date productModDate;
+	public String getProductSeq() {
+		return productSeq;
 	}
-	public void setSeq(String seq) {
-		this.seq = seq;
+	public void setProductSeq(String productSeq) {
+		this.productSeq = productSeq;
 	}
 	public String getProductName() {
 		return productName;
@@ -41,12 +39,6 @@ public class ProductDto {
 	}
 	public void setProductSalePrice(String productSalePrice) {
 		this.productSalePrice = productSalePrice;
-	}
-	public String getProductImg() {
-		return productImg;
-	}
-	public void setProductImg(String productImg) {
-		this.productImg = productImg;
 	}
 	public Integer getProductHotCd() {
 		return productHotCd;
@@ -78,30 +70,33 @@ public class ProductDto {
 	public void setProductSizeCd(Integer productSizeCd) {
 		this.productSizeCd = productSizeCd;
 	}
-	public Integer getDelivaryStatusCd() {
-		return delivaryStatusCd;
+	public Integer getProductDelNy() {
+		return productDelNy;
 	}
-	public void setDelivaryStatusCd(Integer delivaryStatusCd) {
-		this.delivaryStatusCd = delivaryStatusCd;
+	public void setProductDelNy(Integer productDelNy) {
+		this.productDelNy = productDelNy;
 	}
-	public Integer getDelNy() {
-		return delNy;
+	public Date getProductRegDate() {
+		return productRegDate;
 	}
-	public void setDelNy(Integer delNy) {
-		this.delNy = delNy;
+	public void setProductRegDate(Date productRegDate) {
+		this.productRegDate = productRegDate;
 	}
-	public Date getRegDatetime() {
-		return regDatetime;
+	public Date getProductModDate() {
+		return productModDate;
 	}
-	public void setRegDatetime(Date regDatetime) {
-		this.regDatetime = regDatetime;
+	public void setProductModDate(Date productModDate) {
+		this.productModDate = productModDate;
 	}
-	public Date getModDatetime() {
-		return modDatetime;
+	@Override
+	public String toString() {
+		return "ProductDto [productSeq=" + productSeq + ", productName=" + productName + ", productPrice="
+				+ productPrice + ", productSalePrice=" + productSalePrice + ", productHotCd=" + productHotCd
+				+ ", productGenderCd=" + productGenderCd + ", productSeasonCd=" + productSeasonCd + ", productColorCd="
+				+ productColorCd + ", productSizeCd=" + productSizeCd + ", productDelNy=" + productDelNy
+				+ ", productRegDate=" + productRegDate + ", productModDate=" + productModDate + "]";
 	}
-	public void setModDatetime(Date modDatetime) {
-		this.modDatetime = modDatetime;
-	}
+	
 	
 	
 }

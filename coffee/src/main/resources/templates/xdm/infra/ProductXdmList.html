@@ -365,10 +365,10 @@
 										<label class="form-check-label" for="flexCheckChecked"></label>
 									</td>
 									<!--seq number -->
-									<td th:text="${list.seq}"></td>
-									<td th:if="${list.delNy eq 0}">N</td>
-									<td th:unless="${list.delNy eq 0}">Y</td>
-									<td><a th:href="@{/ProductXdmForm(seq=${list.seq})}"
+									<td th:text="${list.productSeq}"></td>
+									<td th:if="${list.productDelNy eq 0}">N</td>
+									<td th:unless="${list.productDelNy eq 0}">Y</td>
+									<td><a th:href="@{/ProductXdmForm(productSeq=${list.productSeq})}"
 										th:text="${list.productName}"></a></td>				
 									<!-- 등록일 수정일 -->
 									<td th:text="${list.productPrice}"></td>
@@ -378,8 +378,8 @@
 									<td th:text="${list.productSeasonCd}"></td>
 									<td th:text="${list.productColorCd}"></td>
 									<td th:text="${list.productSizeCd}"></td>
-									<td th:text="${#dates.format(list.regDatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>
-									<td th:text="${#dates.format(list.modDatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+									<td th:text="${#dates.format(list.productRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+									<td th:text="${#dates.format(list.productModDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 
 								</tr>
 

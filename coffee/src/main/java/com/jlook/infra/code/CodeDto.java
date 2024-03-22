@@ -6,72 +6,74 @@ import java.util.List;
 
 public class CodeDto {
 
-	private String seq;
-	private String name;
-	private String memo;
-	private Date regDatetime;
-	private Date modDatetime;
-	private Integer delNy;
-	private String codeGroup_seq;
+	private String codeSeq;
+	private String codeName;
+	private String codeMemo;
+	private Integer codeDelNy;
+	private Date codeRegDate;
+	private Date codeModDate;
+	private String codeGroupSeqF;
+	
+	private String codeGroupSeq;
 	private String codeGroupName;
 	
-	public String getSeq() {
-		return seq;
+
+	
+	public String getCodeSeq() {
+		return codeSeq;
 	}
-	public String getName() {
-		return name;
+	public void setCodeSeq(String codeSeq) {
+		this.codeSeq = codeSeq;
 	}
-	public String getMemo() {
-		return memo;
+	public String getCodeName() {
+		return codeName;
 	}
-	public Date getRegDatetime() {
-		return regDatetime;
+	public void setCodeName(String codeName) {
+		this.codeName = codeName;
 	}
-	public Date getModDatetime() {
-		return modDatetime;
+	public String getCodeMemo() {
+		return codeMemo;
 	}
-	public Integer getDelNy() {
-		return delNy;
+	public void setCodeMemo(String codeMemo) {
+		this.codeMemo = codeMemo;
 	}
-	public String getCodeGroup_seq() {
-		return codeGroup_seq;
+	public Integer getCodeDelNy() {
+		return codeDelNy;
+	}
+	public void setCodeDelNy(Integer codeDelNy) {
+		this.codeDelNy = codeDelNy;
+	}
+	public Date getCodeRegDate() {
+		return codeRegDate;
+	}
+	public void setCodeRegDate(Date codeRegDate) {
+		this.codeRegDate = codeRegDate;
+	}
+	public Date getCodeModDate() {
+		return codeModDate;
+	}
+	public void setCodeModDate(Date codeModDate) {
+		this.codeModDate = codeModDate;
+	}
+	public String getCodeGroupSeqF() {
+		return codeGroupSeqF;
+	}
+	public void setCodeGroupSeqF(String codeGroupSeqF) {
+		this.codeGroupSeqF = codeGroupSeqF;
+	}
+	public String getCodeGroupSeq() {
+		return codeGroupSeq;
+	}
+	public void setCodeGroupSeq(String codeGroupSeq) {
+		this.codeGroupSeq = codeGroupSeq;
 	}
 	public String getCodeGroupName() {
 		return codeGroupName;
 	}
-	public void setSeq(String seq) {
-		this.seq = seq;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public void setMemo(String memo) {
-		this.memo = memo;
-	}
-	public void setRegDatetime(Date regDatetime) {
-		this.regDatetime = regDatetime;
-	}
-	public void setModDatetime(Date modDatetime) {
-		this.modDatetime = modDatetime;
-	}
-	public void setDelNy(Integer delNy) {
-		this.delNy = delNy;
-	}
-	public void setCodeGroup_seq(String codeGroup_seq) {
-		this.codeGroup_seq = codeGroup_seq;
-	}
 	public void setCodeGroupName(String codeGroupName) {
 		this.codeGroupName = codeGroupName;
 	}
-	@Override
-	public String toString() {
-		return "CodeDto [seq=" + seq + ", name=" + name + ", memo=" + memo + ", regDatetime=" + regDatetime
-				+ ", modDatetime=" + modDatetime + ", delNy=" + delNy + ", codeGroup_seq=" + codeGroup_seq
-				+ ", codeGroupName=" + codeGroupName + "]";
-	}
-	
-	
-//	for cache
+	//	for cache
 	public static List<CodeDto> cachedCodeArrayList = new ArrayList<CodeDto>();
 
 	public static List<CodeDto> getCachedCodeArrayList() {

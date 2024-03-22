@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class MemberDto {
 
-	private String seq;
+	private String memberSeq;
 	private String memberName;
 	private String memberId;
 	private String memberPwd;
@@ -12,14 +12,14 @@ public class MemberDto {
 	private Integer genderCd;
 	private String birthDay;
 	private String phoneNumber;
-	private Integer delNy;
-	private Date regDatetime;
-	private Date modDatetime;
-	public String getSeq() {
-		return seq;
+	private Integer memberDelNy;
+	private Date memberRegDate;
+	private Date memberModDate;
+	public String getMemberSeq() {
+		return memberSeq;
 	}
-	public void setSeq(String seq) {
-		this.seq = seq;
+	public void setMemberSeq(String memberSeq) {
+		this.memberSeq = memberSeq;
 	}
 	public String getMemberName() {
 		return memberName;
@@ -63,24 +63,23 @@ public class MemberDto {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	public Integer getDelNy() {
-		return delNy;
+	public Integer getMemberDelNy() {
+		return memberDelNy;
 	}
-	public void setDelNy(Integer delNy) {
-		this.delNy = delNy;
+	public void setMemberDelNy(Integer memberDelNy) {
+		this.memberDelNy = memberDelNy;
 	}
-	public Date getRegDatetime() {
-		return regDatetime;
+	public Date getMemberRegDate() {
+		return memberRegDate;
 	}
-	public void setRegDatetime(Date regDatetime) {
-		this.regDatetime = regDatetime;
+	public void setMemberRegDate(Date memberRegDate) {
+		this.memberRegDate = memberRegDate;
 	}
-	public Date getModDatetime() {
-		return modDatetime;
+	public Date getMemberModDate() {
+		return memberModDate;
 	}
-	public void setModDatetime(Date modDatetime) {
-		this.modDatetime = modDatetime;
+	public void setMemberModDate(Date memberModDate) {
+		this.memberModDate = memberModDate;
 	}
-	
-	
+
 }

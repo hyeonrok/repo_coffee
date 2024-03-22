@@ -8,32 +8,30 @@
 	<select id="selectList" resultMap="resultMapObj"> <!-- 애매 -->
 
          select
-            a.seq as code_seq
-             ,a.name as codeName
-             ,b.seq
+            a.codeSeq
+             ,a.codeName
+             ,b.productSeq
              ,b.productName
              ,b.productPrice
              ,b.productSalePrice
-         	 ,b.productImg
          	 ,b.productHotCd
          	 ,b.productGenderCd
          	 ,b.productSeasonCd
          	 ,b.productColorCd
          	 ,b.productSizeCd
-         	 ,b.delivaryStatusCd
-         	 ,b.delNy
-         	 ,b.regDatetime
-         	 ,b.modDatetime
+         	 ,b.productDelNy
+         	 ,b.productRegDate
+         	 ,b.productModDate
          from 
              code a
              
          left join  product b
          
-         on  a.seq=b.productGenderCd
+         on  a.codeSeq=b.productGenderCd
 
 	   WHERE 1=1
 	  
-	        <if test="shDelNy != null and shDelNy.equals('')">AND b.delNy = #{shDelNy}</if>
+	        <if test="shDelNy != null and shDelNy.equals('')">AND b.productDelNy = #{shDelNy}</if>
 	     
 	     
 <!--			<choose>-->
@@ -42,32 +40,30 @@
 <!--			</choose>-->
 	
 	    	 <choose>
-	         	 <when test="shOption == 1">AND b.seq = #{shValue}</when>
-	            <when test="shOption == 2">AND b.name LIKE CONCAT('%',#{shValue},'%')</when>
+	         	 <when test="shOption == 1">AND b.productSeq = #{shValue}</when>
+	            <when test="shOption == 2">AND b.productName LIKE CONCAT('%',#{shValue},'%')</when>
 	       	 </choose>
 	       	 
-			ORDER BY b.seq ASC
+			ORDER BY b.productSeq ASC
 	</select>
 	
 	<select id="selectOne" resultMap="resultMapObj">
 		select
-			 seq
+			 productSeq
              ,productName
              ,productPrice
              ,productSalePrice
-         	 ,productImg
          	 ,productHotCd
          	 ,productGenderCd
          	 ,productSeasonCd
          	 ,productColorCd
          	 ,productSizeCd
-         	 ,delivaryStatusCd
-         	 ,delNy
-         	 ,regDatetime
-         	 ,modDatetime
+         	 ,productDelNy
+         	 ,productRegDate
+         	 ,productModDate
 		from product 
 		where 1 = 1
-			AND seq = #{seq}
+			AND productSeq = #{productSeq}
 	</select>
 	
 	<insert id="insert">
@@ -75,24 +71,20 @@
 		 	 productName
              ,productPrice
              ,productSalePrice
-         	 ,productImg
          	 ,productHotCd
          	 ,productGenderCd
          	 ,productSeasonCd
          	 ,productColorCd
          	 ,productSizeCd
-         	 ,delivaryStatusCd
 		) values (
 		#{productName}
 		,#{productPrice}
 		,#{productSalePrice}
-		,#{productImg}
 		,#{productHotCd}
 		,#{productGenderCd}
 		,#{productSeasonCd}
 		,#{productColorCd}
 		,#{productSizeCd}
-		,#{delivaryStatusCd}
 		)
 	</insert>
 	
@@ -102,28 +94,26 @@
 			productName = #{productName}
             ,productPrice = #{productPrice}
             ,productSalePrice = #{productSalePrice}
-         	,productImg = #{productImg}
          	,productHotCd = #{productHotCd}
          	,productGenderCd = #{productGenderCd}
          	,productColorCd = #{productColorCd}
          	,productSizeCd = #{productSizeCd}
-         	,delivaryStatusCd = #{delivaryStatusCd}
     		where 1=1
-    		and seq = #{seq}
+    		and productSeq = #{productSeq}
 	</update>
 	
 	<update id="uelete">
 		update product
 		set
-		delNy = 1
+		productDelNy = 1
     		where 1=1
-    		and seq = #{seq}
+    		and productSeq = #{productSeq}
 	</update>
 	
 	<delete id="delete">
 		delete from product
 		where 1 = 1
-			and seq = #{seq}
+			and productSeq = #{productSeq}
 	</delete>
 	  
 </mapper>

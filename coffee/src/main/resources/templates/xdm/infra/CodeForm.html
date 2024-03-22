@@ -256,12 +256,12 @@
 								</div>
 											<div class="row">
 													<div class="col-6">
-														<label for="seq" class="form-label">seq</label>
-														<input type="text" id="seq" name="seq" class="form-control" th:value="${item.seq}">
+														<label for="codeSeq" class="form-label">seq</label>
+														<input type="text" id="codeSeq" name="codeSeq" class="form-control" th:value="${item.codeSeq}">
 													</div>
 													<div class="col-6">
-														<label for="codeGroup_seq" class="form-label">코드그룹 시퀀스</label>
-														<input type="text" id="codeGroup_seq" name="codeGroup_seq" class="form-control" th:value="${item.codeGroup_seq}">
+														<label for="codeGroupSeqF" class="form-label">코드그룹 시퀀스</label>
+														<input type="text" id="codeGroupSeqF" name="codeGroupSeqF" class="form-control" th:value="${item.codeGroupSeqF}">
 														<div class="invalid-feedback">
 													  			코드그룹 시퀀스를 입력하세요
 													  	</div>
@@ -269,15 +269,15 @@
 											</div>
 											<div class="row mt-3">
 													<div class="col-6">
-														<label for="name" class="form-label">이름</label>
-														<input type="text" id="name" name="name" class="form-control" th:value="${item.name}">
+														<label for="codeName" class="form-label">이름</label>
+														<input type="text" id="codeName" name="codeName" class="form-control" th:value="${item.codeName}">
 														<div class="invalid-feedback">
 													  			코드그룹 이름을 입력하세요
 													  	</div>
 													</div>
 													<div class="col-6">
-														<label class="form-label">메모</label>
-														<input type="text" name="memo" class="form-control" th:value="${item.memo}">
+														<label for="codeMemo" class="form-label">메모</label>
+														<input type="text" id="codeMemo" name="codeMemo" class="form-control" th:value="${item.codeMemo}">
 													</div>
 											</div>
 											
@@ -333,15 +333,15 @@
 	}
 	
 	function validationUpdt(){
-		if(!nullToEmpty(document.getElementById("name").value)) {
+		if(!nullToEmpty(document.getElementById("codeName").value)) {
 			
-			document.getElementById("name").setAttribute("class", "form-control is-invalid");
+			document.getElementById("codeName").setAttribute("class", "form-control is-invalid");
 			return false;
 			
 		}
-		if(!nullToEmpty(document.getElementById("codeGroup_seq").value)) {
+		if(!nullToEmpty(document.getElementById("codeGroupSeqF").value)) {
 			
-			document.getElementById("codeGroup_seq").setAttribute("class", "form-control is-invalid");
+			document.getElementById("codeGroupSeqF").setAttribute("class", "form-control is-invalid");
 			return false;
 			
 		}
