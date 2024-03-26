@@ -6,11 +6,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jlook.infra.codegroup.CodeGroupService;
+
 @Controller
 public class CodeController {
 	
 	@Autowired
 	CodeService service;
+	
+	@Autowired
+	CodeGroupService codeGroupService;
 	
 	@RequestMapping(value = "/CodeXdmList")				
 	public String codeXdmList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception{
@@ -30,7 +35,9 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value = "/CodeReg")
-	public String codeReg() throws Exception {
+	public String codeReg(Model model) throws Exception {
+		
+		model.addAttribute("codeGroupList", codeGroupService.selectListWithoutPaging());
 		
 		return "xdm/infra/CodeReg";
 		

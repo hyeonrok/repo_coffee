@@ -90,4 +90,14 @@
 			and codeGroupSeq=#{codeGroupSeq}
 	</delete>
 	
+	<select id="selectListWithoutPaging" resultMap="resultMapObj">
+		SELECT
+			a.codeGroupSeq
+			, a.codeGroupName
+		FROM codeGroup a
+		WHERE 1=1
+			AND codeGroupDelNy = 0
+		ORDER BY a.codeGroupSeq DESC
+	</select>
+	
 </mapper>

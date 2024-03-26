@@ -8,35 +8,36 @@
 	<select id="selectList" resultMap="resultMapObj"> <!-- 애매 -->
 
          select
-            a.codeGroupSeq
-             ,a.codeGroupName
-             ,b.codeSeq
-             ,b.codeName
-             ,b.codeMemo
-             ,b.codeDelNy
-             ,b.codeModDate
-         	 ,b.codeRegDate
-         	 ,b.codeGroupSeqF
+            b.codeGroupSeq
+             ,b.codeGroupName
+             ,a.codeSeq
+             ,a.codeName
+             ,a.codeMemo
+             ,a.codeDelNy
+             ,a.codeModDate
+         	 ,a.codeRegDate
+         	 ,a.codeGroupSeqF
          from 
-             codeGroup a
-             
-         left join  code b
          
-         on  a.codeGroupSeq = b.codeGroupSeqF
+             code a 
+             
+         left join codeGroup b
+         
+         on  b.codeGroupSeq = a.codeGroupSeqF
 
 	   WHERE 1=1
 	  
-	        <if test="shDelNy != null and shDelNy.equals('')">AND b.delNy = #{shDelNy}</if>
+	        <if test="shDelNy != null and shDelNy.equals('')">AND a.codeDelNy = #{shDelNy}</if>
 	     
-	     <!--
-			<choose>
-				<when test="shOptionDate == 1">AND a.regDatetime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-				<when test="shOptionDate == 2">AND a.modDatetime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-			</choose>
-	-->
+	     
+			<!--<choose>
+				<when test="shOptionDate == 1">AND a.codeRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2">AND a.codeModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			</choose>-->
+	
 	    	 <choose>
-	         	 <when test="shOption == 1">AND b.codeSeq = #{shValue}</when>
-	            <when test="shOption == 2">AND b.codeName LIKE CONCAT('%',#{shValue},'%')</when>
+	         	 <when test="shOption == 1">AND a.codeSeq = #{shValue}</when>
+	            <when test="shOption == 2">AND a.codeName LIKE CONCAT('%',#{shValue},'%')</when>
 	       	 </choose>
 			
 	</select>

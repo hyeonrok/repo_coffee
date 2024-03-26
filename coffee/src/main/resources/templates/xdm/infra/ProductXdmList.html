@@ -1,57 +1,7 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<!-- Meta -->
-	<meta name="description" content="Vivo - Responsive Bootstrap 5 Dashboard Template">
-	<meta name="author" content="Bootstrap Gallery" />
-	<link rel="canonical" href="https://www.bootstrap.gallery/">
-	<meta property="og:url" content="https://www.bootstrap.gallery">
-	<meta property="og:title" content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
-	<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
-	<meta property="og:type" content="Website">
-	<meta property="og:site_name" content="Bootstrap Gallery">
-	<link rel="shortcut icon" href="/xdm/assets/images/favicon.svg">
-
-	<!-- Title -->
-	<title>Vivo Admin Template - Admin Dashboard</title>
-
-
-	<!-- *************
-			************ Common Css Files *************
-		************ -->
-
-	<!-- Animated css -->
-	<link rel="stylesheet" href="/xdm/assets/css/animate.css">
-
-	<!-- Bootstrap font icons css -->
-	<link rel="stylesheet" href="/xdm/assets/fonts/bootstrap/bootstrap-icons.css">
-
-	<!-- Main css -->
-	<link rel="stylesheet" href="/xdm/assets/css/main.min.css">
-
-
-	<!-- *************
-			************ Vendor Css Files *************
-		************ -->
-
-	<!-- Scrollbar CSS -->
-	<link rel="stylesheet" href="/xdm/assets/vendor/overlay-scroll/OverlayScrollbars.min.css">
-
-	<!-- Bootstrap Select CSS -->
-	<link rel="stylesheet" href="/xdm/assets/vendor/bs-select/bs-select.css" />
-
-	<!-- Datetime picker JS -->
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <link rel="stylesheet" type="text/css" media="screen"href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
-
-
-</head>
+<div th:replace="~{xdm/infra/include/head :: head}"></div>
 
 <body>
 
@@ -71,171 +21,16 @@
 	<!-- Page wrapper start -->
 	<div class="page-wrapper">
 
-		<!-- Sidebar wrapper start -->
-		<nav class="sidebar-wrapper">
-
-			<!-- Sidebar brand starts -->
-			<div class="sidebar-brand">
-				<a href="index.html" class="logo">
-					<img src="/xdm/assets/images/logo.svg" alt="Vivo Admin Dashboard" />
-				</a>
-			</div>
-			<!-- Sidebar brand starts -->
-
-			<!-- Sidebar menu starts -->
-			<div class="sidebar-menu">
-				<div class="sidebarMenuScroll">
-					<ul>
-						<li class="sidebar-dropdown">
-							<a href="#">
-								<i class="bi bi-house"></i>
-								<span class="menu-text">코드/코드그룹</span>
-							</a>
-							<div class="sidebar-submenu">
-								<ul>
-									<li>
-										<a th:href="@{/CodeXdmList}">코드관리</a>
-									</li>
-									<li>
-										<a th:href="@{/CodeGroupXdmList}">코드그룹 관리</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="sidebar-dropdown">
-							<a href="#">
-								<i class="bi bi-collection"></i>
-								<span class="menu-text">회원관리</span>
-							</a>
-							<div class="sidebar-submenu">
-								<ul>
-									<li>
-										<a th:href="@{/MemberXdmList}">멤버관리</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="sidebar-dropdown active">
-							<a href="#">
-								<i class="bi bi-handbag"></i>
-								<span class="menu-text">제품관리</span>
-							</a>
-							<div class="sidebar-submenu">
-								<ul>
-									<li>
-										<a th:href="@{/ProductXdmList}">제품관리</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<!-- Sidebar menu ends -->
-
-		</nav>
-		<!-- Sidebar wrapper end -->
+		<!--사이드바 블록처리-->
+		<div th:replace="~{xdm/infra/include/sidebar :: sidebar}"></div>
 
 		<!-- *************
 				************ Main container start *************
 			************* -->
 		<div class="main-container">
 
-			<!-- Page header starts -->
-			<div class="page-header">
-
-				<div class="toggle-sidebar" id="toggle-sidebar"><i class="bi bi-list"></i></div>
-
-				<!-- Breadcrumb start -->
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item">
-						<i class="bi bi-house"></i>
-						<a href="index.html">Home</a>
-					</li>
-					<li class="breadcrumb-item">Product</li>
-					<li class="breadcrumb-item breadcrumb-active" aria-current="page">Orders</li>
-				</ol>
-				<!-- Breadcrumb end -->
-
-				<!-- Header actions ccontainer start -->
-				<div class="header-actions-container">
-
-					<!-- Search container start -->
-					<div class="search-container">
-
-						<!-- Search input group start -->
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search anything">
-							<button class="btn" type="button">
-								<i class="bi bi-search"></i>
-							</button>
-						</div>
-						<!-- Search input group end -->
-
-					</div>
-					<!-- Search container end -->
-
-					<!-- Leads start -->
-					<a href="orders.html" class="leads d-none d-xl-flex">
-						<div class="lead-details">You have <span class="count"> 21 </span> new leads </div>
-						<span class="lead-icon"><i
-								class="bi bi-bell-fill animate__animated animate__swing animate__infinite infinite"></i><b
-								class="dot animate__animated animate__heartBeat animate__infinite"></b></span>
-					</a>
-					<!-- Leads end -->
-
-					<!-- Header actions start -->
-					<ul class="header-actions">
-						<li class="dropdown d-none d-md-block">
-							<a href="#" id="countries" data-toggle="dropdown" aria-haspopup="true">
-								<img src="/xdm/assets/images/flags/1x1/gb.svg" class="flag-img"
-									alt="AI Admin Dashboards" />
-							</a>
-							<div class="dropdown-menu dropdown-menu-end mini" aria-labelledby="countries">
-								<div class="country-container">
-									<a href="index.html">
-										<img src="/xdm/assets/images/flags/1x1/us.svg" alt="Clean Admin Dashboards" />
-									</a>
-									<a href="index.html">
-										<img src="/xdm/assets/images/flags/1x1/in.svg" alt="Google Dashboards" />
-									</a>
-									<a href="index.html">
-										<img src="/xdm/assets/images/flags/1x1/br.svg" alt="Admin Panels" />
-									</a>
-									<a href="index.html">
-										<img src="/xdm/assets/images/flags/1x1/tr.svg" alt="Modern Dashboards" />
-									</a>
-									<a href="index.html">
-										<img src="/xdm/assets/images/flags/1x1/ca.svg" alt="Best Admin Dashboards" />
-									</a>
-								</div>
-							</div>
-						</li>
-						<li class="dropdown">
-							<a href="#" id="userSettings" class="user-settings" data-toggle="dropdown"
-								aria-haspopup="true">
-								<span class="user-name d-none d-md-block">Abigale Heaney</span>
-								<span class="avatar">
-									<img src="/xdm/assets/images/user.png" alt="Admin Templates">
-									<span class="status online"></span>
-								</span>
-							</a>
-							<div class="dropdown-menu dropdown-menu-end" aria-labelledby="userSettings">
-								<div class="header-profile-actions">
-									<a href="profile.html">Profile</a>
-									<a href="account-settings.html">Settings</a>
-									<a href="login.html">Logout</a>
-								</div>
-							</div>
-						</li>
-					</ul>
-					<!-- Header actions end -->
-
-				</div>
-				<!-- Header actions ccontainer end -->
-
-			</div>
-			<!-- Page header ends -->
+			<!--파일헤더 블록처리-->
+			<div th:replace="~{xdm/infra/include/fileheader :: fileheader}"></div>
 
 			<!-- Content wrapper scroll start -->
 			<div class="content-wrapper-scroll">
@@ -392,55 +187,20 @@
 						<!-- Content wrapper end -->
 
 						<!-- App Footer start -->
-						<!-- 페이지네이션 -->
-
-						<ul class="pagination justify-content-center mt-5 mb-4">
-							<li class="paginate_button page-item previous" id="basicExample_previous">
-								<a href="#" aria-controls="basicExample" data-dt-idx="0" tabindex="0"
-									class="page-link">Previous</a>
-							</li>
-							<li class="paginate_button page-item ">
-								<a href="#" aria-controls="basicExample" data-dt-idx="1" tabindex="0"
-									class="page-link">1</a>
-							</li>
-							<li class="paginate_button page-item disabled" id="basicExample_ellipsis">
-								<a href="#" aria-controls="basicExample" data-dt-idx="2" tabindex="0"
-									class="page-link">…</a>
-							</li>
-							<li class="paginate_button page-item ">
-								<a href="#" aria-controls="basicExample" data-dt-idx="3" tabindex="0"
-									class="page-link">8</a>
-							</li>
-							<li class="paginate_button page-item ">
-								<a href="#" aria-controls="basicExample" data-dt-idx="4" tabindex="0"
-									class="page-link">9</a>
-							</li>
-							<li class="paginate_button page-item ">
-								<a href="#" aria-controls="basicExample" data-dt-idx="5" tabindex="0"
-									class="page-link">10</a>
-							</li>
-							<li class="paginate_button page-item next disabled" id="basicExample_next">
-								<a href="#" aria-controls="basicExample" data-dt-idx="8" tabindex="0"
-									class="page-link">Next</a>
-							</li>
-						</ul>
-
-						<div class="row col" style="font-size: larger;">
-							<div class="col-10 mx-5 mt-2 mb-2 float-right">
-								<button type="button" class="btn btn-info" data-bs-toggle="modal"
-									data-bs-target="#verticallyCentered">
-									<i class="bi bi-trash text-red"></i>
-								</button>
+						<!--페이지네이션, 등록 삭제버튼 블록처리-->
+						<div th:replace="~{xdm/infra/include/footer :: footer}"></div>
+						
+						<form method="post">
+						<div class="d-flex justify-content-between mt-4">
+							<div class="">
+								<button type="submit" id="btnSubmit" class="btn btn-info">X</button>
 							</div>
-							<div class="col-1 mt-2 mb-2 float-right">
-								<a th:href="@{/ProductXdmReg}"><button type="submit" class="btn btn-info"  data-bs-toggle="modal"
-										data-bs-target="#verticallyCentered-mod">
-										+
-									</button></a>
+							<div class="">
+								<button type="submit" class="btn btn-info" onclick="javascript: form.action='ProductXdmReg';">+</button>       <!--질문 위에 인서트가 있는데 온클릭을 했을때 되는 이-->
 							</div>
 						</div>
-
-
+					</form>
+						
 					</div>
 				</div>
 				<!-- 테이블 컨테이너 끝-->
@@ -481,36 +241,6 @@
 			</div>
 		</div>
 	</div>
-	
-
-
-	<!-- *************
-			************ Required JavaScript Files *************
-		************* -->
-	<!-- Required jQuery first, then Bootstrap Bundle JS -->
-	<script src="/xdm/assets/js/jquery.min.js"></script>
-	<script src="/xdm/assets/js/bootstrap.bundle.min.js"></script>
-	<script src="/xdm/assets/js/modernizr.js"></script>
-	<script src="/xdm/assets/js/moment.js"></script>
-
-	<!-- *************
-			************ Vendor Js Files *************
-		************* -->
-
-	<!-- Overlay Scroll JS -->
-	<script src="/xdm/assets/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
-	<script src="/xdm/assets/vendor/overlay-scroll/custom-scrollbar.js"></script>
-
-	<!-- Bootstrap Select JS -->
-	<script src="/xdm/assets/vendor/bs-select/bs-select.min.js"></script>
-	<script src="/xdm/assets/vendor/bs-select/bs-select-custom.js"></script>
-
-	<!-- Main Js Required -->
-	<script src="/xdm/assets/js/main.js"></script>
-
-
-	 
-	
 
 <!-- go스크립트 -->
 <!-- 강사님 데이터 피커 -->

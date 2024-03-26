@@ -15,4 +15,6 @@ public interface CodeGroupDao {
 	public int uelete(CodeGroupDto dto);
 	
 	public int delete(CodeGroupDto dto);
+	
+	public List<CodeGroupDto> selectListWithoutPaging();
 }
