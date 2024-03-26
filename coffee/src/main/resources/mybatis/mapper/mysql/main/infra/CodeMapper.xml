@@ -5,7 +5,7 @@
 
 	<resultMap id="resultMapObj" type="com.jlook.infra.code.CodeDto"></resultMap>
 
-	<select id="selectList" resultMap="resultMapObj"> <!-- 애매 -->
+	<!--<select id="selectList" resultMap="resultMapObj">  애매 
 
          select
             b.codeGroupSeq
@@ -30,6 +30,32 @@
 	        <if test="shDelNy != null and shDelNy.equals('')">AND a.codeDelNy = #{shDelNy}</if>
 	     
 	     
+			<choose>
+				<when test="shOptionDate == 1">AND a.codeRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2">AND a.codeModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			</choose>
+	
+	    	 <choose>
+	         	 <when test="shOption == 1">AND a.codeSeq = #{shValue}</when>
+	            <when test="shOption == 2">AND a.codeName LIKE CONCAT('%',#{shValue},'%')</when>
+	       	 </choose>
+			
+	</select>-->
+	
+	<sql id ="selectCommon">
+		 from 
+         
+             code a 
+             
+         left join codeGroup b
+         
+         on  b.codeGroupSeq = a.codeGroupSeqF
+
+	   WHERE 1=1
+	  
+	      <if test="shDelNy != null and shDelNy.equals('')">AND a.codeDelNy = #{shDelNy}</if>
+	     
+	     
 			<!--<choose>
 				<when test="shOptionDate == 1">AND a.codeRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 				<when test="shOptionDate == 2">AND a.codeModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
@@ -39,7 +65,28 @@
 	         	 <when test="shOption == 1">AND a.codeSeq = #{shValue}</when>
 	            <when test="shOption == 2">AND a.codeName LIKE CONCAT('%',#{shValue},'%')</when>
 	       	 </choose>
-			
+	</sql>
+	
+	<select id="selectList" resultMap="resultMapObj">   
+
+         select
+            b.codeGroupSeq
+             ,b.codeGroupName
+             ,a.codeSeq
+             ,a.codeName
+             ,a.codeMemo
+             ,a.codeDelNy
+             ,a.codeModDate
+         	 ,a.codeRegDate
+         	 ,a.codeGroupSeqF
+         	 <include refid="selectCommon" />
+     </select>
+	
+	
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="selectCommon" />
 	</select>
 	
 	<select id="selectOne" resultMap="resultMapObj">

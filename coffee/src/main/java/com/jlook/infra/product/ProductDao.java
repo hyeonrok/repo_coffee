@@ -2,9 +2,11 @@ package com.jlook.infra.product;
 
 import java.util.List;
 
+import com.jlook.infra.BaseVo;
+
 public interface ProductDao {
 
-public List<ProductDto> selectList(ProductVo vo);
+public List<ProductDto> selectList(BaseVo vo);
 	
 	public ProductDto selectOne(ProductDto dto);
 	

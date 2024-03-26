@@ -5,13 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jlook.infra.BaseVo;
+
 @Service
 public class ProductService {
 
 	@Autowired
 	ProductDao dao;
 	
-public List<ProductDto> selectList(ProductVo vo) {
+public List<ProductDto> selectList(BaseVo vo) {
 		
 		return dao.selectList(vo);
 	}

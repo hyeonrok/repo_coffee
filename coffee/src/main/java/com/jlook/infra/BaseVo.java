@@ -2,56 +2,87 @@ package com.jlook.infra;
 
 public class BaseVo {
 
-	private Integer voOptionDate;  /* 날짜종류(Updt,Delt,Inst) 검색 옵션 */ 
-	private Integer voDelNy;      	   /* 삭제여부 검색 옵션 */
-	private Integer voOption;		   /* 검색종류 옵션 */	
-	private String voValue;			   /* 검색한 내용 */
-	
-	/* 검색할 날짜 기간 (시작일, 종료일)  */
-	private String voDateStart;		  
-	private String voDateEnd;
-	
-	public Integer getVoOptionDate() {
-		return voOptionDate;
+	private Integer shUseNy = 1; /* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
+	private Integer shDelNy = 0; /* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
+	private Integer shOptionDate = 2; /* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
+	private String shDateStart;
+	private String shDateEnd;
+	private Integer shOption; /* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
+	private String shValue;
+
+	private String seq;
+
+	public Integer getShUseNy() {
+		return shUseNy;
 	}
-	public void setVoOptionDate(Integer voOptionDate) {
-		this.voOptionDate = voOptionDate;
+
+	public Integer getShDelNy() {
+		return shDelNy;
 	}
-	public Integer getVoDelNy() {
-		return voDelNy;
+
+	public Integer getShOptionDate() {
+		return shOptionDate;
 	}
-	public void setVoDelNy(Integer voDelNy) {
-		this.voDelNy = voDelNy;
+
+	public String getShDateStart() {
+		return shDateStart;
 	}
-	public Integer getVoOption() {
-		return voOption;
+
+	public String getShDateEnd() {
+		return shDateEnd;
 	}
-	public void setVoOption(Integer voOption) {
-		this.voOption = voOption;
+
+	public Integer getShOption() {
+		return shOption;
 	}
-	public String getVoValue() {
-		return voValue;
+
+	public String getShValue() {
+		return shValue;
 	}
-	public void setVoValue(String voValue) {
-		this.voValue = voValue;
+
+
+
+	public void setShUseNy(Integer shUseNy) {
+		this.shUseNy = shUseNy;
 	}
-	public String getVoDateStart() {
-		return voDateStart;
+
+	public void setShDelNy(Integer shDelNy) {
+		this.shDelNy = shDelNy;
 	}
-	public void setVoDateStart(String voDateStart) {
-		this.voDateStart = voDateStart;
+
+	public void setShOptionDate(Integer shOptionDate) {
+		this.shOptionDate = shOptionDate;
 	}
-	public String getVoDateEnd() {
-		return voDateEnd;
+
+	public void setShDateStart(String shDateStart) {
+		this.shDateStart = shDateStart;
 	}
-	public void setVoDateEnd(String voDateEnd) {
-		this.voDateEnd = voDateEnd;
+
+	public void setShDateEnd(String shDateEnd) {
+		this.shDateEnd = shDateEnd;
 	}
-	
+
+	public void setShOption(Integer shOption) {
+		this.shOption = shOption;
+	}
+
+	public void setShValue(String shValue) {
+		this.shValue = shValue;
+	}
+
+	public String getSeq() {
+		return seq;
+	}
+
+	public void setSeq(String seq) {
+		this.seq = seq;
+	}
+
 	@Override
 	public String toString() {
-		return "BaseVo [voOptionDate=" + voOptionDate + ", voDelNy=" + voDelNy + ", voOption=" + voOption + ", voValue="
-				+ voValue + ", voDateStart=" + voDateStart + ", voDateEnd=" + voDateEnd + "]";
-	}	
+		return "CodeVo [shUseNy=" + shUseNy + ", shDelNy=" + shDelNy + ", shOptionDate=" + shOptionDate
+				+ ", shDateStart=" + shDateStart + ", shDateEnd=" + shDateEnd + ", shOption=" + shOption + ", shValue="
+				+ shValue + ", ifcgseq=" + seq + "]";
+	}
 	
 }
