@@ -1,7 +1,7 @@
 package com.jlook.common.util;
 
+import com.jlook.common.base.BaseVo;
 import com.jlook.common.constants.Constants;
-import com.jlook.infra.BaseVo;
 
 public class utilFunction {
 

@@ -80,6 +80,7 @@
          	 ,a.codeRegDate
          	 ,a.codeGroupSeqF
          	 <include refid="selectCommon" />
+         	 limit #{rowNumToShow} offset #{startRnumForMysql}
      </select>
 	
 	

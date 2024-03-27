@@ -6,9 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jlook.common.base.BaseVo;
 import com.jlook.common.constants.Constants;
 import com.jlook.common.util.UtilDateTime;
-import com.jlook.infra.BaseVo;
 
 @Controller
 public class MemberController {
@@ -40,12 +40,20 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/MemberXdmList")
-	public String memberXdmList(@ModelAttribute("vo") BaseVo vo, Model model) throws Exception {
+	public String memberXdmList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
 		System.out.println(vo.toString()+ " -------------------------");
 		
 		model.addAttribute("list", service.selectList(vo));
 		
 		setSearch(vo);
+
+		model.addAttribute("count", service.selectOneCount(vo));
+		vo.setParamsPaging(service.selectOneCount(vo));
+		
+		if(vo.getTotalRows() >0 ) {
+			model.addAttribute("list", service.selectList(vo));
+		}
+		
 		return "xdm/infra/MemberXdmList";
 	}
 	

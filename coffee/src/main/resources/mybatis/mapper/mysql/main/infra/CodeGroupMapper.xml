@@ -5,7 +5,7 @@
 
 	<resultMap id="resultMapObj" type="com.jlook.infra.codegroup.CodeGroupDto"></resultMap>
 
-   <select id="selectList" resultMap="resultMapObj">
+<!--   <select id="selectList" resultMap="resultMapObj">
         select
      	a.codeGroupSeq
 		, a.codeGroupName
@@ -20,20 +20,58 @@
 	  
 	        <if test="shDelNy != null and shDelNy.equals('')">AND a.codeGroupDelNy = #{shDelNy}</if>
 	     
-	     <!--
+	     
 			<choose>
 				<when test="shOptionDate == 1">AND a.regDatetime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 				<when test="shOptionDate == 2">AND a.modDatetime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 			</choose>
-	-->
+	
 	    	 <choose>
 	         	 <when test="shOption == 1">AND a.codeGroupSeq = #{shValue}</when>
 	            <when test="shOption == 2">AND a.codeGroupName LIKE CONCAT('%',#{shValue},'%')</when>
 	       	 </choose>
     </select>
+-->
 
+<sql id ="selectCommon">
+		 from 
+         
+           codeGroup a
 
-
+	   WHERE 1=1
+	  
+	      <if test="shDelNy != null and shDelNy.equals('')">AND a.codeGroupDelNy = #{shDelNy}</if>
+	     
+	     
+			<!--<choose>
+				<when test="shOptionDate == 1">AND a.codeRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2">AND a.codeModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			</choose>-->
+	
+	    	 <choose>
+	         	 <when test="shOption == 1">AND a.codeGroupSeq = #{shValue}</when>
+	            <when test="shOption == 2">AND a.codeGroupName LIKE CONCAT('%',#{shValue},'%')</when>
+	       	 </choose>
+	</sql>
+	
+		
+	
+	<select id="selectList" resultMap="resultMapObj">
+        select
+     	a.codeGroupSeq
+		, a.codeGroupName
+        , a.codeGroupDelNy
+		, a.codeGroupModDate
+		, a.codeGroupRegDate
+		, (select count(*) from code aa where aa.codeGroupSeqF=a.codeGroupSeq) as xseqCount
+		 <include refid="selectCommon" />
+         limit #{rowNumToShow} offset #{startRnumForMysql}
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+			SELECT COUNT(*)
+			<include refid="selectCommon" />
+		</select>
     
     <select id="selectOne" resultMap="resultMapObj">
 		select

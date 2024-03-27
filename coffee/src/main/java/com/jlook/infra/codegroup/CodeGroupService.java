@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jlook.infra.BaseVo;
+import com.jlook.common.base.BaseVo;
 
 @Service
 public class CodeGroupService {
@@ -21,7 +21,7 @@ public class CodeGroupService {
 		return dao.selectListWithoutPaging();
 	}
 	
-	 public List<CodeGroupDto> selectList(BaseVo vo) { 
+	 public List<CodeGroupDto> selectList(CodeGroupVo vo) { 
 	    	return dao.selectList(vo); 
 	    }
 	
@@ -42,6 +42,10 @@ public class CodeGroupService {
 	}
 	public int delete(CodeGroupDto dto) {
 		return dao.delete(dto);
+	}
+
+	public int selectOneCount(CodeGroupVo vo) {
+		return dao.selectOneCount(vo);
 	}
 
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jlook.infra.BaseVo;
+import com.jlook.common.base.BaseVo;
 
 @Service
 public class MemberService {
@@ -13,7 +13,7 @@ public class MemberService {
 	@Autowired
 	MemberDao dao;
 	
-	public List<MemberDto> selectList(BaseVo vo) {
+	public List<MemberDto> selectList(MemberVo vo) {
 		
 		return dao.selectList(vo);
 	}
@@ -41,6 +41,10 @@ public class MemberService {
 	public int delete(MemberDto dto) {
 		
 		return dao.delete(dto);
+	}
+	
+	public int selectOneCount(MemberVo vo) {
+		return dao.selectOneCount(vo);
 	}
 	
 }

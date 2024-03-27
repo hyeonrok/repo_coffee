@@ -40,180 +40,193 @@
 
 				<!-- Row start -->
 				<!-- 폼 셀렉트 -->
-			<form name="formList" id="formList" method="post" autocomplete="off">
-				<div class="row">
+				<form name="formList" id="formList" method="post" autocomplete="off">
+					<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1" />
+					<!--<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}" />-->
+					<div class="row">
 
-					<div class="card">
-						<div class="card-header row">
+						<div class="card">
+							<div class="card-header row">
 
-							<div class="col mb-3">
-								<div class="card-title">멤버 관리</div>
-							</div>
+								<div class="col mb-3">
+									<div class="card-title">멤버 관리</div>
+								</div>
 
 
-							<!-- search s -->
-									
-										<div class="row col-12 gy-3 mb-3">
-											<div class="col-3">
-												<label class="form-label d-flex">삭제여부</label>
-												<select id="shDelNy" name="shDelNy" class="form-select form-select-sm">
-													<option value="" th:selected="${vo.shDelNy == null}">삭제여부</option>
-													<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
-													<option value="0" th:selected="${vo.shDelNy == 0}">N</option>            
-												</select>
-											</div>
-											
-											<div class="col-3">
-												<label class="form-label d-flex">등록일/수정일</label>
-												<select id="shOptionDate" name="shOptionDate" class="form-select form-select-sm">
-													<option value="" th:selected="${vo.shOptionDate == null}">날짜</option>
-													<option value="1" th:selected="${vo.shOptionDate == 1}">등록일</option>
-													<option value="2" th:selected="${vo.shOptionDate == 2}">수정일</option>
-												</select>
-											</div>
-											
-											<div class="col-3">
-												<label class="form-label d-flex">시작일</label>
-													<input type="text" id="shDateStart" name="shDateStart" th:value="${#strings.substring(vo.shDateStart, 0, 10)}" placeholder="시작일" 
-													class="form-control form-control-sm" autocomplete="off">
-											</div>
-											
-											<div class="col-3">
-												<label class="form-label d-flex">종료일</label>
-													<input type="text" id="shDateEnd" name="shDateEnd" th:value="${#strings.substring(vo.shDateEnd, 0, 10)}" placeholder="종료일" 
-													class="form-control form-control-sm" autocomplete="off">
-											</div>
-											<div class="col-3">
-												<select id="shOption" name="shOption" class="form-select form-select-sm">
-													<option value="" th:selected="${vo.shOption == null}">검색구분</option>
-													<option value="1" th:selected="${vo.shOption == 1}">멤버 seq</option>
-													<option value="2" th:selected="${vo.shOption == 2}">멤버 name</option>
-												</select>
-											</div>  
-											<div class="col-3">
-												<input type="text" id="shValue" name="shValue" th:value="${vo.shValue}" onkeyup="enterkey()" placeholder="검색어" class="form-control form-control-sm">
-												<div class="invalid-feedback" id="shValueFeedback"></div>
-											</div>
-											<div class="col">
-												<button type="button" id="btnSearch" class="btn btn-outline-secondary btn-sm btn_custom"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
-												<button type="button" id="btnReset" class="btn btn-outline-secondary btn-sm btn_custom"><i class="fa-solid fa-rotate-right fa-lg"></i></button>
-											</div>                     
-										</div>
-<!-- search e -->
-						</div>
-					</div>
-				</div>
-			</form>
-				<!-- Row end -->
-				<!-- 테이블 시작-->
-				<!-- 테이블 컨테이너 시작-->
-				<div class="container-fluid">
-					<div class="card-body ">
-						<!-- 페이지 셀렉트 -->
-						<div class="d-flex justify-content-between mt-4">
-							<div class="">
-								<label class="form-label">Total : 7</label>
-							</div>
-							<div class="">
-								<label class="form-label">Page</label>
-								<select class="form-select-sm">
-									<option>5</option>
-									<option>10</option>
-									<option>15</option>
-									<option>20</option>
-									<option>25</option>
-								</select>
-							</div>
+								<!-- search s -->
 
-						</div>
-						<div class="table-responsive">
-							<table class="table v-middle">
-								<div class="row">
+								<div class="row col-12 gy-3 mb-3">
+									<div class="col-3">
+										<label class="form-label d-flex">삭제여부</label>
+										<select id="shDelNy" name="shDelNy" class="form-select form-select-sm">
+											<option value="" th:selected="${vo.shDelNy == null}">삭제여부</option>
+											<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
+											<option value="0" th:selected="${vo.shDelNy == 0}">N</option>
+										</select>
+									</div>
+
+									<div class="col-3">
+										<label class="form-label d-flex">등록일/수정일</label>
+										<select id="shOptionDate" name="shOptionDate"
+											class="form-select form-select-sm">
+											<option value="" th:selected="${vo.shOptionDate == null}">날짜</option>
+											<option value="1" th:selected="${vo.shOptionDate == 1}">등록일</option>
+											<option value="2" th:selected="${vo.shOptionDate == 2}">수정일</option>
+										</select>
+									</div>
+
+									<div class="col-3">
+										<label class="form-label d-flex">시작일</label>
+										<input type="text" id="shDateStart" name="shDateStart"
+											th:value="${#strings.substring(vo.shDateStart, 0, 10)}" placeholder="시작일"
+											class="form-control form-control-sm" autocomplete="off">
+									</div>
+
+									<div class="col-3">
+										<label class="form-label d-flex">종료일</label>
+										<input type="text" id="shDateEnd" name="shDateEnd"
+											th:value="${#strings.substring(vo.shDateEnd, 0, 10)}" placeholder="종료일"
+											class="form-control form-control-sm" autocomplete="off">
+									</div>
+									<div class="col-3">
+										<select id="shOption" name="shOption" class="form-select form-select-sm">
+											<option value="" th:selected="${vo.shOption == null}">검색구분</option>
+											<option value="1" th:selected="${vo.shOption == 1}">멤버 seq</option>
+											<option value="2" th:selected="${vo.shOption == 2}">멤버 name</option>
+										</select>
+									</div>
+									<div class="col-3">
+										<input type="text" id="shValue" name="shValue" th:value="${vo.shValue}"
+											onkeyup="enterkey()" placeholder="검색어" class="form-control form-control-sm">
+										<div class="invalid-feedback" id="shValueFeedback"></div>
+									</div>
 									<div class="col">
-										<thead>
-											<tr>
-												<td>
-													<input class="form-check-input" type="checkbox" value=""
-														id="flexCheckChecked" checked>
-													<label class="form-check-label" for="flexCheckChecked"></label>
-												</td>
-												<td>seq</td>
-												<td>삭제여부</td>
-												<td>이름</td>
-												<td>성별</td>
-												<td>아이디</td>
-												<td>비밀번호</td>
-												<td>이메일</td>
-												<td>생년월일</th>
-												<td>전화번호</td>
-												<td>등록일</td>
-												<td>수정일</td>
-											</td>
-										</thead>
+										<button type="button" id="btnSearch"
+											class="btn btn-outline-secondary btn-sm btn_custom"><i
+												class="fa-solid fa-magnifying-glass fa-lg"></i></button>
+										<button type="button" id="btnReset"
+											class="btn btn-outline-secondary btn-sm btn_custom"><i
+												class="fa-solid fa-rotate-right fa-lg"></i></button>
 									</div>
 								</div>
-								<tr th:if="${!#lists.isEmpty(list)}" th:each="list:${list}">
-									<td>
-										<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
-											checked>
-										<label class="form-check-label" for="flexCheckChecked"></label>
-									</td>
-									<!--seq number -->
-									<td th:text="${list.memberSeq}"></td>
-									<td th:if="${list.memberDelNy eq 0}">N</td>
-									<td th:unless="${list.memberDelNy eq 0}">Y</td>
-									<td><a th:href="@{/MemberXdmForm(memberSeq=${list.memberSeq})}"
-										th:text="${list.memberName}"></a></td>				
-									<!-- 등록일 수정일 -->
-<!--									<td th:text="${list.genderCd}"></td>-->
-									<td th:if="${list.genderCd != null}" th:text="${@codeService.selectOneCachedCode(list.genderCd)}" class="genderCd align-middle"></td>
-									<td th:unless="${list.genderCd != null}" class="ifmmGenderCd align-middle"></td>
-									<td th:text="${list.memberId}"></td>
-									<td th:text="${list.memberPwd}"></td>
-									<td th:text="${list.memberEmail}"></td>
-									<td th:text="${list.birthDay}"></td>
-									<td th:text="${list.phoneNumber}"></td>
-									<td th:text="${#dates.format(list.memberRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
-									<td th:text="${#dates.format(list.memberModDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
-
-								</tr>
-
-							</table>
-						</div>
-
-
-
-						<!-- </div> -->
-						<!-- Content wrapper end -->
-
-						<!-- App Footer start -->
-						<!--페이지네이션, 등록 삭제버튼 블록처리-->
-						<div th:replace="~{xdm/infra/include/footer :: footer}"></div>
-
-						<form method="post">
-						<div class="d-flex justify-content-between mt-4">
-							<div class="">
-								<button type="submit" id="btnSubmit" class="btn btn-info">X</button>
-							</div>
-							<div class="">
-								<button type="submit" class="btn btn-info" onclick="javascript: form.action='MemberXdmReg';">+</button>       <!--질문 위에 인서트가 있는데 온클릭을 했을때 되는 이-->
+								<!-- search e -->
 							</div>
 						</div>
-					</form>
 					</div>
-				</div>
-				<!-- 테이블 컨테이너 끝-->
+					<!-- Row end -->
+					<!-- 테이블 시작-->
+					<!-- 테이블 컨테이너 시작-->
+					<div class="container-fluid">
+						<div class="card-body ">
+							<!-- 페이지 셀렉트 -->
+							<div class="d-flex justify-content-between mt-4">
+								<div class="">
+									Total :
+									<label class="form-label" th:text="${count}"></label>
+								</div>
+								<div class="">
+									<label class="form-label">Page</label>
+									<select class="form-select-sm" id="rowNumToShow" name="rowNumToShow"
+										th:onchange="javascript:goList(1)">
+										<option value="5" th:selected="${vo.rowNumToShow == 5}">5</option>
+										<option value="10" th:selected="${vo.rowNumToShow == 10}">10</option>
+										<option value="25" th:selected="${vo.rowNumToShow == 25}">25</option>
+										<option value="100" th:selected="${vo.rowNumToShow == 100}">100</option>
+									</select>
+								</div>
 
-				<div class="app-footer">
-					<span>© Bootstrap Gallery 2023</span>
-				</div>
-				<!-- App footer end -->
+							</div>
+							<div class="table-responsive">
+								<table class="table v-middle">
+									<div class="row">
+										<div class="col">
+											<thead>
+												<tr>
+													<td>
+														<input class="form-check-input" type="checkbox" value=""
+															id="flexCheckChecked" checked>
+														<label class="form-check-label" for="flexCheckChecked"></label>
+													</td>
+													<td>seq</td>
+													<td>삭제여부</td>
+													<td>이름</td>
+													<td>성별</td>
+													<td>아이디</td>
+													<td>비밀번호</td>
+													<td>이메일</td>
+													<td>생년월일</th>
+													<td>전화번호</td>
+													<td>등록일</td>
+													<td>수정일</td>
+													</td>
+											</thead>
+										</div>
+									</div>
+									<tr th:if="${!#lists.isEmpty(list)}" th:each="list:${list}">
+										<td>
+											<input class="form-check-input" type="checkbox" value=""
+												id="flexCheckChecked" checked>
+											<label class="form-check-label" for="flexCheckChecked"></label>
+										</td>
+										<!--seq number -->
+										<td th:text="${list.memberSeq}"></td>
+										<td th:if="${list.memberDelNy eq 0}">N</td>
+										<td th:unless="${list.memberDelNy eq 0}">Y</td>
+										<td><a th:href="@{/MemberXdmForm(memberSeq=${list.memberSeq})}"
+												th:text="${list.memberName}"></a></td>
+										<!-- 등록일 수정일 -->
+										<!--									<td th:text="${list.genderCd}"></td>-->
+										<td th:if="${list.genderCd != null}"
+											th:text="${@codeService.selectOneCachedCode(list.genderCd)}"
+											class="genderCd align-middle"></td>
+										<td th:unless="${list.genderCd != null}" class="ifmmGenderCd align-middle"></td>
+										<td th:text="${list.memberId}"></td>
+										<td th:text="${list.memberPwd}"></td>
+										<td th:text="${list.memberEmail}"></td>
+										<td th:text="${list.birthDay}"></td>
+										<td th:text="${list.phoneNumber}"></td>
+										<td th:text="${#dates.format(list.memberRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+										<td th:text="${#dates.format(list.memberModDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 
+									</tr>
+
+								</table>
+							</div>
+
+
+
+							<!-- </div> -->
+							<!-- Content wrapper end -->
+
+							<!-- App Footer start -->
+							<!--페이지네이션, 등록 삭제버튼 블록처리-->
+							<div th:replace="~{xdm/infra/include/footer :: footer}"></div>
+
+							<div class="d-flex justify-content-between mt-4">
+								<div class="">
+									<button type="submit" id="btnSubmit" class="btn btn-info">X</button>
+								</div>
+								<div class="">
+									<button type="submit" class="btn btn-info"
+										onclick="javascript: form.action='MemberXdmReg';">+</button>
+									<!--질문 위에 인서트가 있는데 온클릭을 했을때 되는 이-->
+								</div>
+							</div>
+				</form>
 			</div>
-			<!-- Content wrapper scroll end -->
-
 		</div>
-		<!-- *************
+		<!-- 테이블 컨테이너 끝-->
+
+		<div class="app-footer">
+			<span>© Bootstrap Gallery 2023</span>
+		</div>
+		<!-- App footer end -->
+
+	</div>
+	<!-- Content wrapper scroll end -->
+
+	</div>
+	<!-- *************
 				************ Main container end *************
 			************* -->
 
@@ -221,8 +234,7 @@
 	<!-- Page wrapper end -->
 
 	<!-- 삭제 모달-->
-	<div class="modal fade" id="verticallyCentered" 
-			tabindex="-1" aria-labelledby="verticallyCenteredLabel"
+	<div class="modal fade" id="verticallyCentered" tabindex="-1" aria-labelledby="verticallyCenteredLabel"
 		aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -240,61 +252,62 @@
 			</div>
 		</div>
 	</div>
-	
-<!-- go스크립트 -->
-<!-- 강사님 데이터 피커 -->
+
+	<!-- go스크립트 -->
+	<!-- 강사님 데이터 피커 -->
 	<!--데이터피커 자바스크립트 구문-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
-        <script type="text/javascript">
-            $(function () {
-                $("#shDateStart, #shDateEnd").datetimepicker({
-                    format: "Y-m-d",
-                    timepicker:false,
-                });
-            });
-   
-	
-	let goUrlXdmList = "/MemberXdmList";								/* ### */
-	let goUrlXdmForm = "/MemberXdmReg";								/* ### */
-	let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele";			/* ### */
-	let goUrlXdmMultiDele = "/v1/infra/codegroup/codeGroupXdmMultiDele";			/* ### */
-	let goUrlXdmView = "/MemberXdmForm";								/* ### */
-	
-	let seq = document.querySelector("input[name=ifcgSeq]");									/* ### */
-	
-	let form = document.querySelector("form[name=formList]");
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$("#shDateStart, #shDateEnd").datetimepicker({
+				format: "Y-m-d",
+				timepicker: false,
+			});
+		});
 
-	document.getElementById("btnReset").onclick = function () {
-	    location.href = goUrlXdmList;
-	}
-	
-	
-	/*
-	document.getElementById("btnForm").onclick = function () {
-	    goForm(0);
-	}
-	*/
-	
-	goForm = function (keyValue) {
-	    seq.value = keyValue;
-	    form.action = goUrlXdmForm;
-	    form.submit();
-	}
-	
-	document.getElementById("btnSearch").onclick = function () {
-    form.action = goUrlXdmList;
-    form.submit();
-	};
 
-	function enterkey() {
-		if (window.event.keyCode == 13) {
-		    form.action = goUrlXdmList;
-		    form.submit();
-	    }
-	}
-	
-	
-</script>
+		let goUrlXdmList = "/MemberXdmList";								/* ### */
+		let goUrlXdmForm = "/MemberXdmReg";								/* ### */
+		let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele";			/* ### */
+		let goUrlXdmMultiDele = "/v1/infra/codegroup/codeGroupXdmMultiDele";			/* ### */
+		let goUrlXdmView = "/MemberXdmForm";								/* ### */
+
+		let seq = document.querySelector("input[name=ifcgSeq]");									/* ### */
+
+		let form = document.querySelector("form[name=formList]");
+
+		document.getElementById("btnReset").onclick = function () {
+			location.href = goUrlXdmList;
+		}
+
+
+		/*
+		document.getElementById("btnForm").onclick = function () {
+			goForm(0);
+		}
+		*/
+
+		goForm = function (keyValue) {
+			seq.value = keyValue;
+			form.action = goUrlXdmForm;
+			form.submit();
+		}
+
+		document.getElementById("btnSearch").onclick = function () {
+			form.action = goUrlXdmList;
+			form.submit();
+		};
+
+		function enterkey() {
+			if (window.event.keyCode == 13) {
+				form.action = goUrlXdmList;
+				form.submit();
+			}
+		}
+
+
+	</script>
 
 </body>
 

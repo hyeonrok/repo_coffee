@@ -6,9 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jlook.common.base.BaseVo;
 import com.jlook.common.constants.Constants;
 import com.jlook.common.util.UtilDateTime;
-import com.jlook.infra.BaseVo;
 import com.jlook.infra.codegroup.CodeGroupService;
 
 @Controller
@@ -44,12 +44,19 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value = "/CodeXdmList")				
-	public String codeXdmList(@ModelAttribute("vo") BaseVo vo, Model model) throws Exception{
+	public String codeXdmList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception{
 
-		model.addAttribute("count",service.selectOneCount());
 		model.addAttribute("list", service.selectList(vo));
 		
 		setSearch(vo);
+		
+		model.addAttribute("count", service.selectOneCount(vo));
+		vo.setParamsPaging(service.selectOneCount(vo));
+		
+		if (vo.getTotalRows() > 0) {
+			model.addAttribute("list", service.selectList(vo));
+		}
+
 	System.out.println(vo.toString());
 		
 		return "xdm/infra/CodeXdmList";

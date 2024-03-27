@@ -2,11 +2,11 @@ package com.jlook.infra.product;
 
 import java.util.List;
 
-import com.jlook.infra.BaseVo;
+import com.jlook.common.base.BaseVo;
 
 public interface ProductDao {
 
-public List<ProductDto> selectList(BaseVo vo);
+public List<ProductDto> selectList(ProductVo vo);
 	
 	public ProductDto selectOne(ProductDto dto);
 	
@@ -17,4 +17,6 @@ public List<ProductDto> selectList(BaseVo vo);
 	public int uelete(ProductDto dto);
 
 	public int delete(ProductDto dto);
+	
+	public int selectOneCount(ProductVo vo);
 }

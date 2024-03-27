@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jlook.infra.BaseVo;
+import com.jlook.common.base.BaseVo;
 
 @Service
 public class ProductService {
@@ -13,7 +13,7 @@ public class ProductService {
 	@Autowired
 	ProductDao dao;
 	
-public List<ProductDto> selectList(BaseVo vo) {
+public List<ProductDto> selectList(ProductVo vo) {
 		
 		return dao.selectList(vo);
 	}
@@ -43,4 +43,8 @@ public List<ProductDto> selectList(BaseVo vo) {
 		return dao.delete(dto);
 	}
 	
+	public int selectOneCount(ProductVo vo) {
+		
+		return dao.selectOneCount(vo);
+	}
 }

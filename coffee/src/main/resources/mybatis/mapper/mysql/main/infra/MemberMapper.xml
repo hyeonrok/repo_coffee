@@ -5,7 +5,7 @@
 
 	<resultMap id="resultMapObj" type="com.jlook.infra.member.MemberDto"></resultMap>
 
-	<select id="selectList" resultMap="resultMapObj"> <!-- 애매 -->
+	<!--<select id="selectList" resultMap="resultMapObj">  애매 
 
          select
              memberSeq
@@ -26,16 +26,58 @@
 	        <if test="shDelNy != null and shDelNy.equals('')">AND memberDelNy = #{shDelNy}</if>
 	     
 	     
-<!--			<choose>-->
-<!--				<when test="shOptionDate == 1">AND a.regDatetime BETWEEN #{shDateStart} AND #{shDateEnd}</when>-->
-<!--				<when test="shOptionDate == 2">AND a.modDatetime BETWEEN #{shDateStart} AND #{shDateEnd}</when>-->
-<!--			</choose>-->
+			<choose>
+				<when test="shOptionDate == 1">AND a.regDatetime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2">AND a.modDatetime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			</choose>
 	
 	    	 <choose>
 	         	 <when test="shOption == 1">AND memberSeq = #{shValue}</when>
 	            <when test="shOption == 2">AND memberName LIKE CONCAT('%',#{shValue},'%')</when>
 	       	 </choose>
 	       	 
+	</select>-->
+	
+	<sql id ="selectCommon">
+		 from member  
+	             
+	   WHERE 1=1
+	  
+	      <if test="shDelNy != null and shDelNy.equals('')">AND memberDelNy = #{shDelNy}</if>
+	     
+	     
+			<!--<choose>
+				<when test="shOptionDate == 1">AND a.codeRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2">AND a.codeModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			</choose>-->
+	
+	    	 <choose>
+	         	 <when test="shOption == 1">AND memberSeq = #{shValue}</when>
+	            <when test="shOption == 2">AND memberName LIKE CONCAT('%',#{shValue},'%')</when>
+	       	 </choose>
+	</sql>
+	
+	<select id="selectList" resultMap="resultMapObj"> <!-- 애매 -->
+
+         select
+             memberSeq
+             ,memberName
+             ,memberId
+             ,memberPwd
+         	 ,memberEmail
+         	 ,genderCd
+         	 ,birthDay
+         	 ,phoneNumber
+         	 ,memberDelNy
+         	 ,memberRegDate
+         	 ,memberModDate
+         	  <include refid="selectCommon" />
+         	 limit #{rowNumToShow} offset #{startRnumForMysql}
+     </select>
+     
+     <select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="selectCommon" />
 	</select>
 	
 	<select id="selectOne" resultMap="resultMapObj">

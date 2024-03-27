@@ -2,11 +2,11 @@ package com.jlook.infra.code;
 
 import java.util.List;
 
-import com.jlook.infra.BaseVo;
+import com.jlook.common.base.BaseVo;
 
 public interface CodeDao {
 
-	 public List<CodeDto> selectList(BaseVo vo);
+	 public List<CodeDto> selectList(CodeVo vo);
 	public List<CodeDto> selectList();
 	public CodeDto selectOne(CodeDto dto);
 	
@@ -21,5 +21,5 @@ public interface CodeDao {
 	
 	public List<CodeDto> selectListCachedCodeArrayList();
 	
-	public int selectOneCount();
+	public int selectOneCount(CodeVo vo);
 }
