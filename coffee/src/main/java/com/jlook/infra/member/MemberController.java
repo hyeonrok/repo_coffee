@@ -1,14 +1,21 @@
 package com.jlook.infra.member;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jlook.common.base.BaseVo;
 import com.jlook.common.constants.Constants;
 import com.jlook.common.util.UtilDateTime;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MemberController {
@@ -73,6 +80,7 @@ public class MemberController {
 	@RequestMapping(value = "/MemberInsert")
 	public String memberInsert(MemberDto dto) {
 		
+		dto.setMemberPwd(encodeBcrypt(dto.getMemberPwd(), 10));
 		service.insert(dto);
 		return "redirect:/MemberXdmList";
 	}
@@ -113,10 +121,49 @@ public class MemberController {
 		return "usr/infra/index";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/signinXdmProc")
+	public Map<String, Object> signinXdmProc(MemberDto dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+
+		// 아이디, 패스워드를 통해서 회원인지 아닌지 여부 조회
+		MemberDto dtos = service.selectLogin(dto);
+		dtos.getMemberId();
+		System.out.println(dtos.getMemberId()+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		/*
+		 * dto.getMemberId().equals(service.selectLogin(dto).getMemberId());
+		 */		System.out.println(dto.getMemberId() + dto.getMemberPwd()+"-----------------------------------");
+        returnMap.put("rt", "success");
+       
+		return returnMap ;
+	}
+	
+	@RequestMapping(value = "/login")
+	public String signin(MemberDto dto) {
+
+		return "usr/infra/login";
+	}
+	
 	@RequestMapping(value = "/usrInsert")
 	public String usrInsert(MemberDto dto) {
 		
+		dto.setMemberPwd(encodeBcrypt(dto.getMemberPwd(), 10));
 		service.insert(dto);
 		return "redirect:/index";
 	}
+	
+	
+
+	
+	public String encodeBcrypt(String planeText, int strength) {
+		  return new BCryptPasswordEncoder(strength).encode(planeText);
+	}
+
+			
+	public boolean matchesBcrypt(String planeText, String hashValue, int strength) {
+	  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(strength);
+	  return passwordEncoder.matches(planeText, hashValue);
+	}
+	
+	
 }

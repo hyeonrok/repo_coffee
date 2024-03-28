@@ -144,7 +144,7 @@
 	function validationUpdt(){
 		if(!checkOnlyKoreanEnglishNumber('memberName', 2, 0, "코드그룹 이름은 한글, 영문대소문자, 숫자만 입력 가능합니다.")) return false;
 		if(!checkId ('memberId', 2, 0, "아이디를 확인해주세요")) return false;
-		if(!checkPassword ('memberPwd', 2, 0, "비밀번호를 확인해주세요")) return false;
+		//if(!checkPassword ('memberPwd', 2, 0, "비밀번호를 확인해주세요")) return false;
 		if(!checkEmail ('memberEmail', 2, 0, "이메일 형식을 확인해주세요")) return false;
 		if(!checkOnlyNumber('phoneNumber', 2, 0, 1, 11, 11, "숫자만 입력 가능합니다.")) return false;
 	}

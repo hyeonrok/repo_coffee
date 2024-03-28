@@ -146,5 +146,16 @@
 			and memberSeq = #{memberSeq}
 	</delete>
 	
+	<!-- user -->
+	<select id="selectLogin" resultMap="resultMapObj"> <!-- 애매 -->
+         select
+             memberId
+             ,memberPwd
+        from
+        	member
+        	where 1=1
+        	and memberId = #{memberId}
+     </select>
+	
 
 </mapper>
